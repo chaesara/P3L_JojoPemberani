@@ -1,0 +1,11 @@
+#productImg {
+	position: relative;
+	max-height: 100px;
+	width: 18rem;
+}
+
+#productImg img {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
