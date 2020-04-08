@@ -45,7 +45,7 @@
             <div class="row">
                 <?php foreach ($products as $p) : ?>
                     <div class="col-ml-auto">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card mx-2" style="width: 240px;">
                             <img style="position: relative; max-height: 120px;" class="card-img-top" src="<?= base_url(); ?>assets/products/<?= $p['img'] ?>" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $p['product_name'] ?></h5>
@@ -57,10 +57,11 @@
                             </ul>
                             <div class="card-body">
                                 <a href="#" class="card-link">Edit</a>
-                                <a href="#" class="card-link text-danger">Delete</a>
+                                <a href="<?= base_url(); ?>products/delete_products/<?= $p['product_id']; ?>" class="card-link text-danger">Delete</a>
                             </div>
                         </div>
                     </div>
+
                 <?php endforeach; ?>
             </div>
         </div>

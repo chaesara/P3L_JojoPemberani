@@ -60,7 +60,7 @@
                     <span>Products</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="<?= base_url('services'); ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Services</span></a>
             </li>

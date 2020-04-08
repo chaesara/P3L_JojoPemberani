@@ -18,9 +18,9 @@ class Auth extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Kouvee Login';
 
-            $this->load->view('templates/auth_header', $data);
+            $this->load->view('templates/header', $data);
             $this->load->view('auth/login');
-            $this->load->view('templates/auth_footer');
+            $this->load->view('templates/footer');
         } else {
             $this->_login(); //_ identified as Private Function
         }

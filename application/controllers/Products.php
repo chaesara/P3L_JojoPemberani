@@ -44,7 +44,7 @@ class Products extends CI_Controller
                 'product_name' => $this->input->post('product_name'),
                 'product_price' => $this->input->post('product_price'),
                 'product_quantity' => $this->input->post('product_quantity'),
-                'img' => $this->_uploadImage()
+                'img' => $this->_uploadImage($this->input->post('product_name'))
             ];
             $this->products_model->createProducts($data);
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
@@ -86,12 +86,12 @@ class Products extends CI_Controller
         }
     }
 
-    private function _uploadImage()
+    private function _uploadImage($imgName)
     {
         $config['upload_path']          = './assets/products';
         $config['allowed_types']        = 'jpg|png';
         $config['max_size']             = 3000;
-        $config['file_name']            = 'product_name';
+        $config['file_name']            = $imgName;
         $config['overwrite']            = true;
         $config['encrypt_name']         = true;
         //$config['max_width']            = 1024;

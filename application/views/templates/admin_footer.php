@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer style="bottom: 0; position: absolute;" class="sticky-footer bg-white">
+<footer class="sticky-footer bg-white">
   <div class="container my-auto">
     <div class="copyright text-center my-auto">
       <span>Copyright &copy; Tim Jojo Pemberani 2020</span>
@@ -7,7 +7,6 @@
   </div>
 </footer>
 <!-- End of Footer -->
-
 </div>
 <!-- End of Content Wrapper -->
 

@@ -31,15 +31,15 @@
                 <label for="price">Price</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Rp </span>
-                    <input type="text" class="form-control" id="product_price" name="product_price" placeholder="2000">
+                    <input type="text" class="form-control" id="product_price" name="product_price" placeholder="how valuable is it ?">
                     <?= form_error('product_price', '<small class="text-danger pl-3">', '</small>') ?>
                 </div>
             </div>
             <div class="form-group">
                 <label for="quantity">Quantity</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="product_price" name="product_price" placeholder="2000">
-                    <?= form_error('product_price', '<small class="text-danger pl-3">', '</small>') ?>
+                    <input type="text" class="form-control" id="product_quantity" name="product_quantity" placeholder="how much unit we have ?">
+                    <?= form_error('product_quantity', '<small class="text-danger pl-3">', '</small>') ?>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary btn-user btn-block">

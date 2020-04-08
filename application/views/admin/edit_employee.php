@@ -21,15 +21,6 @@
                 <?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <hr class="sidebar-divider">
-            <div class="form-group">
-                <label for="Role">Roles</label>
-                <select class="form-control" name="role" id="role">
-                    <?php foreach ($role as $r) : ?>
-                        <option value="<?= $r ?>"><?= $r ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <hr class="sidebar-divider">
             <button type="submit" class="btn btn-primary btn-user btn-block">
                 Submit
             </button>
