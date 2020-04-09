@@ -11,7 +11,7 @@ class Customers extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Customers List :: Kouvee';
+        $data['title'] = 'Customers :: Kouvee';
         // $data['customers'] = $this->customers_model->getCustomers();
         $data['customers'] = $this->customers_model->get_by_employee();
 
@@ -33,7 +33,7 @@ class Customers extends CI_Controller
         $this->form_validation->set_rules('customer_name', 'Name', 'required');
         $this->form_validation->set_rules('customer_phoneno', 'Phone Number', 'required|numeric');
         $this->form_validation->set_rules('customer_address', 'Address', 'required');
-        $this->form_validation->set_rules('customer_membership', 'Membership', 'required');
+        $this->form_validation->set_rules('customer_birth', 'Address', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
@@ -65,7 +65,7 @@ class Customers extends CI_Controller
         redirect('customers');
     }
 
-    public function edit_employees($id)
+    public function edit_customers($id)
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Edit Customer';
@@ -74,6 +74,7 @@ class Customers extends CI_Controller
         $this->form_validation->set_rules('customer_name', 'Name', 'required');
         $this->form_validation->set_rules('customer_phoneno', 'Phone Number', 'required|numeric');
         $this->form_validation->set_rules('customer_address', 'Address', 'required');
+        $this->form_validation->set_rules('customer_birth', 'Address', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);

@@ -42,8 +42,8 @@
                                 <td><?= $e['employee_birth'] ?></td>
                                 <td><?= $e['username'] ?></td>
                                 <td><a href="<?= base_url(); ?>employees/edit_employees/<?= $e['employee_id']; ?>"><button type="button" class="btn btn-outline-primary">Edit</button></a>
-                                    <a href="<?= base_url(); ?>employees/delete_employees/<?= $e['employee_id']; ?>"><button type="button" class="btn btn-danger">Delete</button> </a></td>
-                                
+                                    <a href="<?= base_url(); ?>employees/delete_employees/<?= $e['employee_id']; ?>"><button type="button" class="btn btn-danger">Delete</button> </a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

@@ -56,7 +56,7 @@
                                 <li class="list-group-item"><?= $p['employee_name'] ?></li>
                             </ul>
                             <div class="card-body">
-                                <a href="#" class="card-link">Edit</a>
+                                <a href="<?= base_url(); ?>products/edit_products/<?= $p['product_id']; ?>" class="card-link">Edit</a>
                                 <a href="<?= base_url(); ?>products/delete_products/<?= $p['product_id']; ?>" class="card-link text-danger">Delete</a>
                             </div>
                         </div>

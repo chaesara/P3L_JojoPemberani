@@ -30,9 +30,10 @@ class Products_model extends CI_Model
 
     public function deleteProducts($id)
     {
-        $path = BASEPATH.'/assets/products/';
-        $img = $this->db->get('products')->row()->img;
-        $pathfile = $path.$img;
+        $query = $this->db->select('img')->from('products')->where('product_id', $id)->get();
+        $img = $query->row()->img;
+
+        $pathfile = './assets/products/'.$img;
         unlink($pathfile);
         $this->db->delete('products', ['product_id' => $id]);
         return $this->db->affected_rows();

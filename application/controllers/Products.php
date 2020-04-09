@@ -32,13 +32,14 @@ class Products extends CI_Controller
         $data['title'] = 'Add Product';
 
         $this->form_validation->set_rules('product_name', 'Name', 'required|is_unique[products.product_name]');
+        $this->form_validation->set_rules('product_price', 'Price', 'required|numeric');
+        $this->form_validation->set_rules('product_quantity', 'Qty', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
             $this->load->view('admin/add_product', $data);
             $this->load->view('templates/admin_footer');
         } else {
-
             $data = [
                 'employee_id' => $data['user']['employee_id'],
                 'product_name' => $this->input->post('product_name'),
