@@ -13,7 +13,7 @@ class Services_model extends CI_Model
         if ($id === null) {
             return $this->db->get('services')->result_array();
         } else {
-            return $this->db->get_where('services', ['service_id' => $id])->result_array();
+            return $this->db->get_where('services', ['service_id' => $id])->row_array();
         }
     }
 
@@ -49,7 +49,17 @@ class Services_model extends CI_Model
     public function searchServices()
     {
         $keyword = $this->input->post('keyword', true);
+
+        $this->db->select('services.*, employees.employee_name');
+        $this->db->join('employees', 'employee_id');
+        $this->db->from('services');
         $this->db->like('service_name', $keyword);
-        return $this->db->get('services')->result_array();
+
+        $query = $this->db->get();
+
+        return $query->result_array();
+
+        // $this->db->like('service_name', $keyword);
+        // return $this->db->get('services')->result_array();
     }
 }

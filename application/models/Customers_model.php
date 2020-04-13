@@ -13,7 +13,7 @@ class Customers_model extends CI_Model
         if ($id === null) {
             return $this->db->get('customers')->result_array();
         } else {
-            return $this->db->get_where('customers', ['customer_id' => $id])->result_array();
+            return $this->db->get_where('customers', ['customer_id' => $id])->row_array();
         }
     }
 
@@ -49,7 +49,14 @@ class Customers_model extends CI_Model
     public function searchCustomers()
     {
         $keyword = $this->input->post('keyword', true);
+        
+        $this->db->select('customers.*, employees.employee_name');
+        $this->db->join('employees', 'employee_id');
+        $this->db->from('customers');
         $this->db->like('customer_name', $keyword);
-        return $this->db->get('customers')->result_array();
+
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
 }

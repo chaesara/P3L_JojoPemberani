@@ -6,7 +6,7 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Services</h1>
     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-    <a href="<?= base_url('customers/add_services'); ?>"><button type="button" class="btn btn-primary mb-3">Add Service</button></a>
+    <a href="<?= base_url('services/add_services'); ?>"><button type="button" class="btn btn-primary mb-3">Add Service</button></a>
     <form action="" method="post">
         <div class="input-group mt-3 mb-3">
             <input type="text" class="form-control" placeholder="Enter a name..." name="keyword" value="<?= set_value('keyword'); ?>">
@@ -25,14 +25,21 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Price</th>
                             <th>Updated by</th>
+                            <th> </th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($services as $s) : ?>
                             <tr>
-                                <td><?= $s['customer_name'] ?></td>
-                                <td><?= $s['customer_address'] ?></td>
+                                <td><?= $s['service_name'] ?></td>
+                                <td><?= $s['service_price'] ?></td>
+                                <td><?= $s['employee_name'] ?></td>
+                                <td>
+                                <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>services/edit_services/<?= $s['service_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>services/delete_services/<?= $s['service_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

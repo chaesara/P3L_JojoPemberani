@@ -13,7 +13,7 @@ class Products_model extends CI_Model
         if ($id === null) {
             return $this->db->get('products')->result_array();
         } else {
-            return $this->db->get_where('products', ['product_id' => $id])->result_array();
+            return $this->db->get_where('products', ['product_id' => $id])->row_array();
         }
     }
 
@@ -30,9 +30,10 @@ class Products_model extends CI_Model
 
     public function deleteProducts($id)
     {
-        $path = BASEPATH.'/assets/products/';
-        $img = $this->db->get('products')->row()->img;
-        $pathfile = $path.$img;
+        $query = $this->db->select('img')->from('products')->where('product_id', $id)->get();
+        $img = $query->row()->img;
+
+        $pathfile = './assets/products/' . $img;
         unlink($pathfile);
         $this->db->delete('products', ['product_id' => $id]);
         return $this->db->affected_rows();
@@ -46,6 +47,18 @@ class Products_model extends CI_Model
 
     public function updateProducts($data, $id)
     {
+        $query = $this->db->select('img')->from('products')->where('product_id', $id)->get();
+        $img = $query->row()->img;
+
+        if ($data['img'] != NULL) {
+            $pathfile = './assets/products/' . $img;
+            unlink($pathfile);
+        } else {
+            $data['img'] = $img;
+        }
+
+        // delete img file -> then upload the new one
+
         $this->db->update('products', $data, ['product_id' => $id]);
         return $this->db->affected_rows();
     }

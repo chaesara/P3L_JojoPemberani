@@ -46,7 +46,7 @@
                 <?php foreach ($products as $p) : ?>
                     <div class="col-ml-auto">
                         <div class="card mx-2" style="width: 240px;">
-                            <img style="position: relative; max-height: 120px;" class="card-img-top" src="<?= base_url(); ?>assets/products/<?= $p['img'] ?>" alt="Card image cap">
+                            <img style="position: relative; max-height: 240px;" class="card-img-top" src="<?= base_url(); ?>assets/products/<?= $p['img'] ?>" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $p['product_name'] ?></h5>
                             </div>
@@ -56,7 +56,7 @@
                                 <li class="list-group-item"><?= $p['employee_name'] ?></li>
                             </ul>
                             <div class="card-body">
-                                <a href="#" class="card-link">Edit</a>
+                                <a href="<?= base_url(); ?>products/edit_products/<?= $p['product_id']; ?>" class="card-link">Edit</a>
                                 <a href="<?= base_url(); ?>products/delete_products/<?= $p['product_id']; ?>" class="card-link text-danger">Delete</a>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <tbody>
                                 <?php foreach ($products as $p) : ?>
                                     <tr>
-                                        <td><?= $p['product_name'] ?></td>
+                                        <td><h3 class="font-weight-bold"><?= $p['product_name'] ?></h3></td>
                                         <td><img style="max-height:100px;
                     max-width:100px;
                     height:auto;
@@ -95,7 +95,9 @@
                 </div>
             </div>
         </div>
+
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">..eqweqwe.</div>
+
     </div>
 
 </div>

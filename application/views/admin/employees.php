@@ -6,7 +6,8 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Employees List</h1>
     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
-    <a href="<?= base_url('employees/add_employees'); ?>"><button type="button" class="btn btn-primary mb-3">Add Employee</button></a>
+
+    <button type="button" class="btn btn-primary mb-3" onclick="window.location.href = '<?= base_url('employees/add_employees'); ?>';">Add Employee</button>
     <form action="" method="post">
         <div class="input-group mt-3 mb-3">
             <input type="text" class="form-control" placeholder="Enter a name..." name="keyword" value="<?= set_value('keyword'); ?>">
@@ -15,6 +16,7 @@
             </div>
         </div>
     </form>
+
     <!-- DataTales Example -->
 
     <div class="card shadow mb-4">
@@ -29,7 +31,7 @@
                             <th>Phone Number</th>
                             <th>Birth Date</th>
                             <th>Username</th>
-                            <th> </th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,9 +43,10 @@
                                 <td><?= $e['employee_phoneno'] ?></td>
                                 <td><?= $e['employee_birth'] ?></td>
                                 <td><?= $e['username'] ?></td>
-                                <td><a href="<?= base_url(); ?>employees/edit_employees/<?= $e['employee_id']; ?>"><button type="button" class="btn btn-outline-primary">Edit</button></a>
-                                    <a href="<?= base_url(); ?>employees/delete_employees/<?= $e['employee_id']; ?>"><button type="button" class="btn btn-danger">Delete</button> </a></td>
-                                
+                                <td>
+                                    <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>employees/edit_employees/<?= $e['employee_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
+                                    <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>employees/delete_employees/<?= $e['employee_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

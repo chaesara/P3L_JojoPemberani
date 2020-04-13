@@ -11,7 +11,7 @@ class Customers extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Customers List :: Kouvee';
+        $data['title'] = 'Customers :: Kouvee';
         // $data['customers'] = $this->customers_model->getCustomers();
         $data['customers'] = $this->customers_model->get_by_employee();
 
@@ -65,7 +65,7 @@ class Customers extends CI_Controller
         redirect('customers');
     }
 
-    public function edit_employees($id)
+    public function edit_customers($id)
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Edit Customer';

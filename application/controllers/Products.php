@@ -13,14 +13,13 @@ class Products extends CI_Controller
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Products List :: Kouvee';
-        
+
         $data['products'] = $this->products_model->get_by_employee();
-        
+
         if ($this->input->post('keyword')) {
             $data['products'] = $this->products_model->searchProducts();
         }
-        
-        
+
         $this->load->view('templates/admin_header', $data);
         $this->load->view('admin/products', $data);
         $this->load->view('templates/admin_footer');
@@ -32,19 +31,21 @@ class Products extends CI_Controller
         $data['title'] = 'Add Product';
 
         $this->form_validation->set_rules('product_name', 'Name', 'required|is_unique[products.product_name]');
+        $this->form_validation->set_rules('product_price', 'Price', 'required|numeric');
+        $this->form_validation->set_rules('product_quantity', 'Qty', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
+            // $this->load->view('admin/add_product_copy', $data);
             $this->load->view('admin/add_product', $data);
             $this->load->view('templates/admin_footer');
         } else {
-
             $data = [
                 'employee_id' => $data['user']['employee_id'],
                 'product_name' => $this->input->post('product_name'),
                 'product_price' => $this->input->post('product_price'),
                 'product_quantity' => $this->input->post('product_quantity'),
-                'img' => $this->_uploadImage($this->input->post('product_name'))
+                'img' => $this->_uploadImage($this->input->post('product_name'), 0)
             ];
             $this->products_model->createProducts($data);
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
@@ -79,6 +80,9 @@ class Products extends CI_Controller
             $data = [
                 'employee_id' => $data['user']['employee_id'],
                 'product_name' => $this->input->post('product_name'),
+                'product_price' => $this->input->post('product_price'),
+                'product_quantity' => $this->input->post('product_quantity'),
+                'img' => $this->_uploadImage($this->input->post('product_name'), 1)
             ];
 
             $this->products_model->updateProducts($data, $id);
@@ -86,7 +90,7 @@ class Products extends CI_Controller
         }
     }
 
-    private function _uploadImage($imgName)
+    private function _uploadImage($imgName, $edit)
     {
         $config['upload_path']          = './assets/products';
         $config['allowed_types']        = 'jpg|png';
@@ -102,10 +106,12 @@ class Products extends CI_Controller
         if ($this->upload->do_upload('imgInp')) {
             return $this->upload->data('file_name');
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            Select an image
-          </div>');
-            redirect('products/add_products');
+            if ($edit != '1') {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Select an image
+              </div>');
+                redirect('products/add_products');
+            }
         }
     }
 }

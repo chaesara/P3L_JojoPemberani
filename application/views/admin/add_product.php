@@ -9,22 +9,20 @@
                 <?= form_error('product_name', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <div class="form-group">
-            <label for="image">Face of You</label>
+                <label for="inputImage">Face of You</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                     </div>
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" name="imgInp" id="imgInp">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                        <label class="custom-file-label" for="inputImage">Choose file</label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <img style="max-height:100px;
-                    max-width:100px;
-                    height:auto;
-                    width:auto;" id="image" src="#" alt="">
+                <img style="height:200px;
+                    width:200px;" id="image" src="#" alt="">
             </div>
 
             <div class="form-group">

@@ -12,7 +12,7 @@ class Employees extends CI_Controller
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
         if ($this->session->userdata('role_id') === '1') {
-            $data['title'] = 'Employee List :: Kouvee';
+            $data['title'] = 'Employees :: Kouvee';
             $data['employees'] = $this->employees->get_by_role();
             $data['role'] = ['Owner', 'CS', 'Cashier'];
 
