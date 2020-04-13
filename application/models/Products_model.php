@@ -33,7 +33,11 @@ class Products_model extends CI_Model
         $query = $this->db->select('img')->from('products')->where('product_id', $id)->get();
         $img = $query->row()->img;
 
+<<<<<<< HEAD
         $pathfile = './assets/products/' . $img;
+=======
+        $pathfile = './assets/products/'.$img;
+>>>>>>> f66337224039f599c8cff1c0e4efc1f2a5571c56
         unlink($pathfile);
         $this->db->delete('products', ['product_id' => $id]);
         return $this->db->affected_rows();

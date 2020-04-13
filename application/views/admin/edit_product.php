@@ -1,11 +1,19 @@
 <div class="container-fluid">
     <?= $this->session->flashdata('message'); ?>
+<<<<<<< HEAD
     <h1 class="h3 mb-2 text-gray-800">Edit Product : <?= $product['product_name']; ?></h1>
+=======
+    <h1 class="h3 mb-2 text-gray-800">Add Product</h1>
+>>>>>>> f66337224039f599c8cff1c0e4efc1f2a5571c56
     <div class="card o-hidden border-0 my-5 col-lg-12 mx-auto">
         <form method="post" class="my-3 mx-3" id="submit" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Product Name</label>
+<<<<<<< HEAD
                 <input type="text" class="form-control" id="product_name" name="product_name" value="<?= $product['product_name'] ?>">
+=======
+                <input type="text" class="form-control" id="product_name" name="product_name" value="<?= $product['product_name']; ?>">
+>>>>>>> f66337224039f599c8cff1c0e4efc1f2a5571c56
                 <?= form_error('product_name', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <div class="form-group">
@@ -43,7 +51,11 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary btn-user btn-block">
+<<<<<<< HEAD
                 Confirm Edit
+=======
+                Add Product
+>>>>>>> f66337224039f599c8cff1c0e4efc1f2a5571c56
             </button>
         </form>
     </div>
@@ -52,17 +64,21 @@
     $(document).ready(function() {
         $('#submit').on('submit', function(e) {
             e.preventDefault();
-            $.ajax({
-                url: "<?php echo base_url(); ?>products/edit_products",
-                method: "POST",
-                data: new FormData(this),
-                contentType: false,
-                cache: false,
-                processData: false,
-                success: function(data) {
-                    alert("upload success");
-                }
-            });
+            if ($('#imgInp').val() == '') {
+                alert("Please Select the File");
+            } else {
+                $.ajax({
+                    url: "<?php echo base_url(); ?>products/edit_products",
+                    method: "POST",
+                    data: new FormData(this),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    success: function(data) {
+                        alert("upload success");
+                    }
+                });
+            }
         });
     });
 </script>
