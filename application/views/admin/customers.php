@@ -50,19 +50,8 @@
                             <?php endforeach; ?>
                         <?php else : ?>
                             <tr>
-<<<<<<< HEAD
                                 <td colspan="7">
                                     <h3 class="text-center">list was empty</h3>
-=======
-                                <td><?= $c['customer_name'] ?></td>
-                                <td><?= $c['customer_address'] ?></td>
-                                <td><?= $c['customer_phoneno'] ?></td>
-                                <td><?= $c['customer_birth'] ?></td>
-                                <td><?= $c['customer_membership'] ?></td>
-                                <td><?= $c['employee_name'] ?></td>
-                                <td><a href="<?= base_url(); ?>customers/edit_customers/<?= $c['customer_id']; ?>"><button type="button" class="btn btn-outline-primary">Edit</button></a>
-                                    <a href="<?= base_url(); ?>customers/delete_customers/<?= $c['customer_id']; ?>"><button type="button" class="btn btn-danger">Delete</button> </a>
->>>>>>> f66337224039f599c8cff1c0e4efc1f2a5571c56
                                 </td>
                             </tr>
                         <?php endif; ?>
