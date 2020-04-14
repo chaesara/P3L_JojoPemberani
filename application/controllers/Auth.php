@@ -34,7 +34,7 @@ class Auth extends CI_Controller
         $user = $this->db->get_where('employees', ['username' => $username])->row_array();
         //var_dump($users);
         //die;
-        if ($user) {
+        if ($user['DELETED_AT'] === NULL) {
             if (password_verify($password, $user['password'])) {
                 $data = [
                     'username' => $user['username'],
@@ -52,7 +52,7 @@ class Auth extends CI_Controller
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            User not found ! Please register first
+            User not found !
           </div>');
             redirect('auth');
         }
