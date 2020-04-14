@@ -23,7 +23,7 @@
             <hr class="sidebar-divider">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username" value="<?= $employee['username'];     ?>">
+                <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username" value="<?= $employee['username']; ?>">
                 <?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <div class="form-group">
