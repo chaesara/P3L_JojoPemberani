@@ -28,11 +28,24 @@ class Customers_model extends CI_Model
         return $query->result_array();
     }
 
+    // Delete - insert now timestamp to deleted_at
     public function deleteCustomers($id)
     {
-        $this->db->delete('customers', ['customer_id' => $id]);
-        return $this->db->affected_rows();
+        date_default_timezone_set('Asia/Karachi'); # add your city to set local time zone
+        $now = date('Y-m-d H:i:s');
+
+        $data = [
+            'DELETED_AT' => $now
+        ];
+        $this->db->update('customers', $data, ['customer_id' => $id]);
     }
+
+    // Actually delete data from database
+    // public function deleteCustomers($id)
+    // {
+    //     $this->db->delete('customers', ['customer_id' => $id]);
+    //     return $this->db->affected_rows();
+    // }
 
     public function createCustomers($data)
     {
@@ -49,7 +62,7 @@ class Customers_model extends CI_Model
     public function searchCustomers()
     {
         $keyword = $this->input->post('keyword', true);
-        
+
         $this->db->select('customers.*, employees.employee_name');
         $this->db->join('employees', 'employee_id');
         $this->db->from('customers');

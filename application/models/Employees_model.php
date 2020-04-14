@@ -17,11 +17,24 @@ class Employees_model extends CI_Model
         }
     }
 
+    // Delete - insert now timestamp to deleted_at
     public function deleteEmployees($id)
     {
-        $this->db->delete('employees', ['employee_id' => $id]);
-        return $this->db->affected_rows();
+        date_default_timezone_set('Asia/Karachi'); # add your city to set local time zone
+        $now = date('Y-m-d H:i:s');
+
+        $data = [
+            'DELETED_AT' => $now
+        ];
+        $this->db->update('employees', $data, ['employee_id' => $id]);
     }
+
+    // // Actually delete data from database
+    // public function deleteEmployees($id)
+    // {
+    //     $this->db->delete('employees', ['employee_id' => $id]);
+    //     return $this->db->affected_rows();
+    // }
 
     public function createEmployees($data)
     {

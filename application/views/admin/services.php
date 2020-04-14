@@ -32,15 +32,17 @@
                     </thead>
                     <tbody>
                         <?php foreach ($services as $s) : ?>
-                            <tr>
-                                <td><?= $s['service_name'] ?></td>
-                                <td><?= $s['service_price'] ?></td>
-                                <td><?= $s['employee_name'] ?></td>
-                                <td>
-                                <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>services/edit_services/<?= $s['service_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
+                            <?php if ($s['DELETED_AT'] === NULL) : ?>
+                                <tr>
+                                    <td><?= $s['service_name'] ?></td>
+                                    <td><?= $s['service_price'] ?></td>
+                                    <td><?= $s['employee_name'] ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>services/edit_services/<?= $s['service_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
                                         <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>services/delete_services/<?= $s['service_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

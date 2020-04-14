@@ -12,7 +12,7 @@ class Products extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Products List :: Kouvee';
+        $data['title'] = 'Products :: Kouvee';
 
         $data['products'] = $this->products_model->get_by_employee();
 

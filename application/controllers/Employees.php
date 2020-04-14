@@ -91,7 +91,7 @@ class Employees extends CI_Controller
         $this->form_validation->set_rules('employee_name', 'Name', 'required');
         $this->form_validation->set_rules('employee_phoneno', 'Phone Number', 'required|numeric');
         $this->form_validation->set_rules('employee_address', 'Address', 'required');
-        $this->form_validation->set_rules('username', 'Username', 'required|is_unique[employees.username]|min_length[2]');
+        $this->form_validation->set_rules('username', 'Username', 'required|is_unique[employees.username]|min_length[3]');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);

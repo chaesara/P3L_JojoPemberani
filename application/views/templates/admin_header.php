@@ -32,7 +32,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
+                <div class="sidebar-brand-icon">
                     <i class="fas fa-dog"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Kouevee Pet Shop</div>
@@ -47,28 +47,38 @@
             </div>
 
             <!-- Nav Item - Dashboard -->
-            <?php if ($this->session->userdata('role_id') === '1') : ?>
+            <?php if ($this->session->userdata('role_id') == 1) : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('employees'); ?>">
-                        <i class="fas fa-fw fa-building"></i>
+                        <i class="fas fa-building    "></i>
                         <span>Employees</span></a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('products'); ?>">
+                        <i class="fas fa-cubes"></i>
+                        <span>Products</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('services'); ?>">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Services</span></a>
+                </li>
             <?php endif; ?>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('products'); ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Products</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('services'); ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Services</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('customers'); ?>">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Customers</span></a>
-            </li>
+            <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 3)) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('customers'); ?>">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <span>Customers</span></a>
+                </li>
+            <?php endif; ?>
+            <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 2)) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-dog    "></i>
+                        <span>Animals</span></a>
+                </li>
+            <?php endif; ?>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -82,7 +92,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>## WIP ##</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -97,7 +107,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <span>## WIP ##</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">

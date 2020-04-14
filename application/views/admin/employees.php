@@ -36,18 +36,20 @@
                     </thead>
                     <tbody>
                         <?php foreach ($employees as $e) : ?>
-                            <tr>
-                                <td><?= $e['employee_name'] ?></td>
-                                <td><?= $e['role_name'] ?></td>
-                                <td><?= $e['employee_address'] ?></td>
-                                <td><?= $e['employee_phoneno'] ?></td>
-                                <td><?= $e['employee_birth'] ?></td>
-                                <td><?= $e['username'] ?></td>
-                                <td>
-                                    <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>employees/edit_employees/<?= $e['employee_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
-                                    <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>employees/delete_employees/<?= $e['employee_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                </td>
-                            </tr>
+                            <?php if ($e['DELETED_AT'] === NULL) : ?>
+                                <tr>
+                                    <td><?= $e['employee_name'] ?></td>
+                                    <td><?= $e['role_name'] ?></td>
+                                    <td><?= $e['employee_address'] ?></td>
+                                    <td><?= $e['employee_phoneno'] ?></td>
+                                    <td><?= $e['employee_birth'] ?></td>
+                                    <td><?= $e['username'] ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>employees/edit_employees/<?= $e['employee_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>employees/delete_employees/<?= $e['employee_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

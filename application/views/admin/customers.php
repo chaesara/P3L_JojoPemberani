@@ -35,23 +35,26 @@
                     <tbody>
                         <?php if ($customers != null) : ?>
                             <?php foreach ($customers as $c) : ?>
-                                <tr>
-                                    <td><?= $c['customer_name'] ?></td>
-                                    <td><?= $c['customer_address'] ?></td>
-                                    <td><?= $c['customer_phoneno'] ?></td>
-                                    <td><?= $c['customer_birth'] ?></td>
-                                    <td><?= $c['customer_membership'] ?></td>
-                                    <td><?= $c['employee_name'] ?></td>
-                                    <td>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>customers/edit_customers/<?= $c['customer_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
-                                        <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>customers/delete_customers/<?= $c['customer_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </td>
-                                </tr>
+                                <?php if ($c['DELETED_AT'] === NULL) : ?>
+                                    <tr>
+                                        <td><?= $c['customer_name'] ?></td>
+                                        <td><?= $c['customer_address'] ?></td>
+                                        <td><?= $c['customer_phoneno'] ?></td>
+                                        <td><?= $c['customer_birth'] ?></td>
+                                        <td><?= $c['customer_membership'] ?></td>
+                                        <td><?= $c['employee_name'] ?></td>
+                                        <td>
+                                            <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>customers/edit_customers/<?= $c['customer_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
+                                            <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>customers/delete_customers/<?= $c['customer_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         <?php else : ?>
                             <tr>
                                 <td colspan="7">
                                     <h3 class="text-center">list was empty</h3>
+                                    <p class="text-center">what are you looking for ?</p>
                                 </td>
                             </tr>
                         <?php endif; ?>

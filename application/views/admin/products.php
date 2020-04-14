@@ -10,13 +10,10 @@
     <div class="nav nav-tabs" id="myTab" role="tablist">
         <ul class="nav nav-tabs">
             <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Card</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Table</a>
             </li>
         </ul>
     </div>
@@ -44,24 +41,25 @@
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <div class="row">
                 <?php foreach ($products as $p) : ?>
-                    <div class="col-ml-auto">
-                        <div class="card mx-2" style="width: 240px;">
-                            <img style="position: relative; max-height: 240px;" class="card-img-top" src="<?= base_url(); ?>assets/products/<?= $p['img'] ?>" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $p['product_name'] ?></h5>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item"><?= $p['product_price'] ?></li>
-                                <li class="list-group-item"><?= $p['product_quantity'] ?></li>
-                                <li class="list-group-item"><?= $p['employee_name'] ?></li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="<?= base_url(); ?>products/edit_products/<?= $p['product_id']; ?>" class="card-link">Edit</a>
-                                <a href="<?= base_url(); ?>products/delete_products/<?= $p['product_id']; ?>" class="card-link text-danger">Delete</a>
+                    <?php if ($p['DELETED_AT'] === NULL) : ?>
+                        <div class="col-ml-auto">
+                            <div class="card mx-2" style="width: 240px;">
+                                <img style="position: relative; max-height: 240px;" class="card-img-top" src="<?= base_url(); ?>assets/products/<?= $p['img'] ?>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title font-weight-bold"><?= $p['product_name'] ?></h5>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Rp <?= $p['product_price'] ?></li>
+                                    <li class="list-group-item">Qty : <?= $p['product_quantity'] ?></li>
+                                    <li class="list-group-item"><?= $p['employee_name'] ?></li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="<?= base_url(); ?>products/edit_products/<?= $p['product_id']; ?>" class="card-link">Edit</a>
+                                    <a href="<?= base_url(); ?>products/delete_products/<?= $p['product_id']; ?>" class="card-link text-danger">Delete</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    <?php endif; ?>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -80,14 +78,18 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($products as $p) : ?>
-                                    <tr>
-                                        <td><h3 class="font-weight-bold"><?= $p['product_name'] ?></h3></td>
-                                        <td><img style="max-height:100px;
+                                    <?php if ($p['DELETED_AT'] === NULL) : ?>
+                                        <tr>
+                                            <td>
+                                                <?= $p['product_name'] ?>
+                                            </td>
+                                            <td><img style="max-height:100px;
                     max-width:100px;
                     height:auto;
                     width:auto;" src="<?= base_url(); ?>assets/products/<?= $p['img'] ?>" alt=""></td>
-                                        <td><?= $p['employee_name'] ?></td>
-                                    </tr>
+                                            <td><?= $p['employee_name'] ?></td>
+                                        </tr>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

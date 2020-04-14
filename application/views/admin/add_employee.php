@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="card center o-hidden border-0 my-5 col-lg-8 mx-auto">
+    <div class="card center o-hidden border-0 my-5 mx-auto">
         <form class="my-3 mx-3" method="post" action="<?= base_url('employees/add_employees'); ?>">
             <div class="form-group">
                 <input type="text" class="form-control form-Dcontrol-user" id="employee_name" name="employee_name" placeholder="Full Name" value="<?= set_value('employee_name') ?>">
