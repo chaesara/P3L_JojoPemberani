@@ -34,7 +34,7 @@ class Auth extends CI_Controller
         $user = $this->db->get_where('employees', ['username' => $username])->row_array();
         //var_dump($users);
         //die;
-        if ($user['DELETED_AT'] === NULL) {
+        if ($user && $user['DELETED_AT'] === NULL) {
             if (password_verify($password, $user['password'])) {
                 $data = [
                     'username' => $user['username'],
