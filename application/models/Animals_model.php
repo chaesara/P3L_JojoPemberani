@@ -1,27 +1,27 @@
 <?php
 
 
-class Services_model extends CI_Model
+class Animals_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
     }
 
-    public function getServices($id = null)
+    public function getAnimals($id = null)
     {
         if ($id === null) {
-            return $this->db->get('services')->result_array();
+            return $this->db->get('animals')->result_array();
         } else {
-            return $this->db->get_where('services', ['service_id' => $id])->row_array();
+            return $this->db->get_where('animals', ['animal_id' => $id])->row_array();
         }
     }
 
     public function get_by_employee()
     {
-        $this->db->select('services.*, employees.employee_name');
+        $this->db->select('animals.*, employees.employee_name');
         $this->db->join('employees', 'employee_id');
-        $this->db->from('services');
+        $this->db->from('animals');
 
         $query = $this->db->get();
 
@@ -29,7 +29,7 @@ class Services_model extends CI_Model
     }
 
     // Delete - insert now timestamp to deleted_at
-    public function deleteServices($id)
+    public function deleteAnimals($id)
     {
         date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
@@ -37,36 +37,36 @@ class Services_model extends CI_Model
         $data = [
             'DELETED_AT' => $now
         ];
-        return $this->db->update('services', $data, ['service_id' => $id]);
+        return $this->db->update('animals', $data, ['animal_id' => $id]);
     }
 
     // Actually delete data from database
-    // public function deleteServices($id)
+    // public function deleteAnimals($id)
     // {
-    //     $this->db->delete('services', ['service_id' => $id]);
+    //     $this->db->delete('animals', ['animal_id' => $id]);
     //     return $this->db->affected_rows();
     // }
 
-    public function createServices($data)
+    public function createAnimals($data)
     {
-        $this->db->insert('services', $data);
+        $this->db->insert('animals', $data);
         return $this->db->affected_rows();
     }
 
-    public function updateServices($data, $id)
+    public function updateAnimals($data, $id)
     {
-        $this->db->update('services', $data, ['service_id' => $id]);
+        $this->db->update('animals', $data, ['animal_id' => $id]);
         return $this->db->affected_rows();
     }
 
-    public function searchServices()
+    public function searchAnimals()
     {
         $keyword = $this->input->post('keyword', true);
 
-        $this->db->select('services.*, employees.employee_name');
+        $this->db->select('animals.*, employees.employee_name');
         $this->db->join('employees', 'employee_id');
-        $this->db->from('services');
-        $this->db->like('service_name', $keyword);
+        $this->db->from('animals');
+        $this->db->like('animal_name', $keyword);
 
         $query = $this->db->get();
 

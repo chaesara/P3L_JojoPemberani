@@ -74,7 +74,7 @@
             <?php endif; ?>
             <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 2)) : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="<?= base_url('animals'); ?>">
                         <i class="fas fa-dog    "></i>
                         <span>Animals</span></a>
                 </li>

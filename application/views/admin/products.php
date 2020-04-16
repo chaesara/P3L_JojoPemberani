@@ -44,7 +44,7 @@
                     <?php if ($p['DELETED_AT'] === NULL) : ?>
                         <div class="col-ml-auto">
                             <div class="card mx-2" style="width: 240px;">
-                                <img style="position: relative; max-height: 240px;" class="card-img-top" src="<?= base_url(); ?>assets/products/<?= $p['img'] ?>" alt="Card image cap">
+                                <img style="position: relative; max-height: 240px;" class="card-img-top" src="<?= base_url(); ?>assets/products/<?= $p['image'] ?>" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title font-weight-bold"><?= $p['product_name'] ?></h5>
                                 </div>

@@ -45,7 +45,7 @@ class Products extends CI_Controller
                 'product_name' => $this->input->post('product_name'),
                 'product_price' => $this->input->post('product_price'),
                 'product_quantity' => $this->input->post('product_quantity'),
-                'img' => $this->_uploadImage($this->input->post('product_name'), 0)
+                'image' => $this->_uploadImage($this->input->post('product_name'), 0)
             ];
             $this->products_model->createProducts($data);
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
@@ -82,7 +82,7 @@ class Products extends CI_Controller
                 'product_name' => $this->input->post('product_name'),
                 'product_price' => $this->input->post('product_price'),
                 'product_quantity' => $this->input->post('product_quantity'),
-                'img' => $this->_uploadImage($this->input->post('product_name'), 1)
+                'image' => $this->_uploadImage($this->input->post('product_name'), 1)
             ];
 
             $this->products_model->updateProducts($data, $id);
