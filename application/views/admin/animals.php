@@ -7,14 +7,10 @@
     <h1 class="h3 mb-2 text-gray-800">Animals</h1>
     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
     <a href="<?= base_url('services/add_services'); ?>"><button type="button" class="btn btn-primary mb-3">Add Service</button></a>
-    <form action="" method="post">
-        <div class="input-group mt-3 mb-3">
-            <input type="text" class="form-control" placeholder="Enter a name..." name="keyword" value="<?= set_value('keyword'); ?>">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
-            </div>
-        </div>
-    </form>
+
+    <div class="input-group mt-3 mb-3">
+        <input type="text" class="form-control" id="searchInput" onkeyup="search()" placeholder="Enter a name...">
+    </div>
 
     <!-- DataTales Example -->
 

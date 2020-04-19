@@ -19,14 +19,9 @@
     </div>
 
     <!-- DataTales Example -->
-    <form action="" method="post">
-        <div class="input-group mt-3 mb-3">
-            <input type="text" class="form-control" placeholder="Enter a name..." name="keyword" value="<?= set_value('keyword'); ?>">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Search</button>
-            </div>
-        </div>
-    </form>
+    <div class="input-group mt-3 mb-3">
+        <input type="text" class="form-control" id="searchInput" onkeyup="search()" placeholder="Enter a name...">
+    </div>
 
 
 
@@ -37,9 +32,9 @@
 
     <!-- End of Main Content -->
 
-    <div class="tab-content" id="myTabContent">
+    <div class="tab-content" id="home-tab">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div class="row">
+            <div class="row" id="dataTable">
                 <?php foreach ($products as $p) : ?>
                     <?php if ($p['DELETED_AT'] === NULL) : ?>
                         <div class="col-ml-auto">
@@ -86,7 +81,7 @@
                                             <td><img style="max-height:100px;
                     max-width:100px;
                     height:auto;
-                    width:auto;" src="<?= base_url(); ?>assets/products/<?= $p['img'] ?>" alt=""></td>
+                    width:auto;" src="<?= base_url(); ?>assets/products/<?= $p['image'] ?>" alt=""></td>
                                             <td><?= $p['employee_name'] ?></td>
                                         </tr>
                                     <?php endif; ?>

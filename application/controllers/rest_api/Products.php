@@ -63,9 +63,8 @@ class Products extends RestController
             'product_id' => $this->post('product_id'),
             'employee_id' => $this->post('employee_id'),
             'product_name' => $this->post('product_name'),
-            'product_address' => $this->post('product_address'),
-            'product_phoneno' => $this->post('product_phoneno'),
-            'product_birth' => $this->post('product_birth')
+            'product_price' => $this->post('product_price'),
+            'product_quantity' => $this->post('product_quantity')
         ];
 
         if ($this->products->createProducts($data) > 0) {
