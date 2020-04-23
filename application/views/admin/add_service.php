@@ -17,6 +17,15 @@
                     <?= form_error('service_price', '<small class="text-danger pl-3">', '</small>') ?>
                 </div>
             </div>
+            <hr class="sidebar-divider">
+            <div class="form-group">
+                <label for="Size">Sizes</label>
+                <select class="form-control" name="size_name" id="size_name">
+                    <?php foreach ($sizes as $s) : ?>
+                        <option value="<?= $s['size_name'] ?>"><?= $s['size_name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary btn-user btn-block">
                 Add service
             </button>

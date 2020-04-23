@@ -11,11 +11,13 @@
                 <input type="text" class="form-control form-control-user" id="employee_address" name="employee_address" placeholder="Enter Address" value="<?= set_value('employee_address') ?>">
                 <?= form_error('employee_address', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
-            <div class="input-group mb-3">
+            <div class="form-group">
                 <label for="employee_phoneno">Phone Number</label>
-                <span class="input-group-text" id="basic-addon1">+62</span>
-                <input type="text" class="form-control form-control-user" name="employee_phoneno" placeholder="Phone Number" value="<?= set_value('employee_phoneno') ?>">
-                <?= form_error('employee_phoneno', '<small class="text-danger pl-3">', '</small>') ?>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">+62</span>
+                    <input type="text" class="form-control form-control-user" name="employee_phoneno" placeholder="Phone Number" value="<?= set_value('employee_phoneno') ?>">
+                    <?= form_error('employee_phoneno', '<small class="text-danger pl-3">', '</small>') ?>
+                </div>
             </div>
             <div class="form-group">
                 <label for="employee_birth">Birth Date</label>

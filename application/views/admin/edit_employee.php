@@ -1,4 +1,5 @@
 <div class="container-fluid">
+<h1 class="h3 mb-2 text-gray-800">Edit Employee : <?= $employee['employee_name']; ?></h1>
     <div class="card o-hidden border-0 my-5 col-lg-12 mx-auto">
         <form class="my-3 mx-3" method="post" action="">
             <div class="form-group">

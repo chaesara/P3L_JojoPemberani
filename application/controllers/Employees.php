@@ -84,8 +84,8 @@ class Employees extends CI_Controller
     public function edit_employees($id)
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Edit Employee';
         $data['employee'] = $this->employees->getEmployees($id);
+        $data['title'] = 'Edit Employee : ' . $data['employee']['employee_name'];
         $data['role'] = ['Owner', 'CS', 'Cashier'];
 
         $this->form_validation->set_rules('employee_name', 'Name', 'required');

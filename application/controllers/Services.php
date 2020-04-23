@@ -14,6 +14,7 @@ class Services extends CI_Controller
         $data['title'] = 'Services :: Kouvee';
         // $data['customers'] = $this->customers_model->getCustomers();
         $data['services'] = $this->services_model->get_by_employee();
+        $data['sizes'] = $this->services_model->getSizes();
 
         //buat search
         if ($this->input->post('keyword')) {
@@ -29,6 +30,7 @@ class Services extends CI_Controller
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Add Service';
+        $data['sizes'] = $this->services_model->getSizes();
 
         $this->form_validation->set_rules('service_name', 'Name', 'required|is_unique[services.service_name]');
         $this->form_validation->set_rules('service_price', 'Price', 'required|numeric');
@@ -40,6 +42,7 @@ class Services extends CI_Controller
         } else {
             $data = [
                 'employee_id' => $data['user']['employee_id'],
+                'size_id' => $this->services_model->getSizeId($this->input->post('size_name')),
                 'service_name' => $this->input->post('service_name'),
                 'service_price' => $this->input->post('service_price'),
             ];
@@ -55,7 +58,7 @@ class Services extends CI_Controller
     {
         $this->services_model->deleteServices($id);
         $this->session->set_flashdata('flash', '<div class="alert alert-danger" role="alert">
-            Product deleted !
+            Service deleted !
           </div>');
         redirect('services');
     }
@@ -80,6 +83,9 @@ class Services extends CI_Controller
             ];
 
             $this->services_model->updateServices($data, $id);
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
+            Service updated !
+          </div>');
             redirect('services');
         }
     }

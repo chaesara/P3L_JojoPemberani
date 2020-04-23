@@ -48,11 +48,20 @@
 
             <!-- Nav Item - Dashboard -->
             <?php if ($this->session->userdata('role_id') == 1) : ?>
+                <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('employees'); ?>">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmp" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-building    "></i>
                         <span>Employees</span></a>
+                    </a>
+                    <div id="collapseEmp" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="<?= base_url('employees'); ?>">View Employees</a>
+                            <a class="collapse-item" href="<?= base_url('employees/add_employees'); ?>">Add Employee</a>
+                        </div>
+                    </div>
                 </li>
+
 
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('products'); ?>">
@@ -63,6 +72,16 @@
                     <a class="nav-link" href="<?= base_url('services'); ?>">
                         <i class="fas fa-fw fa-tachometer-alt"></i>
                         <span>Services</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('suppliers'); ?>">
+                        <i class="fas fa-boxes    "></i>
+                        <span>Suppliers</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('sizes'); ?>">
+                        <i class="fas fa-weight    "></i>
+                        <span>Sizes</span></a>
                 </li>
             <?php endif; ?>
             <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 3)) : ?>

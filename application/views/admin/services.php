@@ -21,6 +21,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Size</th>
                             <th>Price</th>
                             <th>Updated by</th>
                             <th> </th>
@@ -31,6 +32,7 @@
                             <?php if ($s['DELETED_AT'] === NULL) : ?>
                                 <tr>
                                     <td><?= $s['service_name'] ?></td>
+                                    <td><?= $s['size_name'] ?></td>
                                     <td><?= $s['service_price'] ?></td>
                                     <td><?= $s['employee_name'] ?></td>
                                     <td>

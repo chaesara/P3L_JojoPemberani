@@ -17,10 +17,27 @@ class Services_model extends CI_Model
         }
     }
 
+    public function getSizes()
+    {
+        return $this->db->get('sizes')->result_array();
+    }
+
+    public function getSizeId($size_name)
+    {
+        $this->db->select('sizes.size_id');
+        $this->db->from('sizes');
+        $this->db->where('size_name', $size_name);
+
+        $query = $this->db->get();
+
+        return $query->row()->size_id;
+    }
+
     public function get_by_employee()
     {
-        $this->db->select('services.*, employees.employee_name');
+        $this->db->select('services.*, employees.employee_name, sizes.size_name');
         $this->db->join('employees', 'employee_id');
+        $this->db->join('sizes', 'size_id');
         $this->db->from('services');
 
         $query = $this->db->get();
