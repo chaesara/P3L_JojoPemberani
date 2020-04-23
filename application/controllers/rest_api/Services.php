@@ -62,10 +62,9 @@ class Services extends RestController
         $data = [
             'service_id' => $this->post('service_id'),
             'employee_id' => $this->post('employee_id'),
+            'size_id' => $this->post('size_id'),
             'service_name' => $this->post('service_name'),
-            'service_address' => $this->post('service_address'),
-            'service_phoneno' => $this->post('service_phoneno'),
-            'service_birth' => $this->post('service_birth')
+            'service_price' => $this->post('service_price')
         ];
 
         if ($this->services->createServices($data) > 0) {
@@ -86,10 +85,11 @@ class Services extends RestController
         $id = $this->put('service_id');
 
         $data = [
-            'service_name' => $this->put('service_name'),
-            'service_address' => $this->put('service_address'),
-            'service_phoneno' => $this->put('service_phoneno'),
-            'service_birth' => $this->put('service_birth')
+            'service_id' => $this->post('service_id'),
+            'employee_id' => $this->post('employee_id'),
+            'size_id' => $this->post('size_id'),
+            'service_name' => $this->post('service_name'),
+            'service_price' => $this->post('service_price')
         ];
 
         if ($id === null) {

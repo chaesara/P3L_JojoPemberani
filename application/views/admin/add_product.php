@@ -9,7 +9,7 @@
                 <?= form_error('product_name', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <div class="form-group">
-                <label for="inputImage">Face of You</label>
+                <label for="inputImage">Product Image</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>

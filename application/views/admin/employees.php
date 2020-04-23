@@ -10,7 +10,7 @@
     <button type="button" class="btn btn-primary mb-3" onclick="window.location.href = '<?= base_url('employees/add_employees'); ?>';">Add Employee</button>
 
     <div class="input-group mt-3 mb-3">
-        <input type="text" class="form-control" id="searchInput" onkeyup="search()" placeholder="Enter a name...">
+        <input type="text" class="form-control" id="searchInput" onkeyup="search()" placeholder="Search by a name...">
     </div>
 
     <!-- DataTales Example -->
@@ -57,4 +57,3 @@
 <!-- /.container-fluid -->
 </div>
 <!-- End of Main Content -->
-

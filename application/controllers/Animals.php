@@ -13,10 +13,6 @@ class Animals extends CI_Controller
     {
         $data['title'] = 'Animals :: Kouvee';
         $data['animals'] = $this->animals_model->get_by_employee();
-        
-        if ($this->input->post('keyword')) {
-            $data['animals'] = $this->animals_model->searchAnimals();
-        }
 
         $this->load->view('templates/admin_header', $data);
         $this->load->view('admin/animals', $data);
@@ -26,10 +22,10 @@ class Animals extends CI_Controller
     public function add_animals()
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Add Animal';
+        $data['title'] = 'Add Ansimal';
 
-        $this->form_validation->set_rules('service_name', 'Name', 'required|is_unique[services.service_name]');
-        $this->form_validation->set_rules('service_price', 'Price', 'required|numeric');
+        $this->form_validation->set_rules('animal_name', 'Name', 'required|is_unique[services.service_name]');
+        $this->form_validation->set_rules('animal', 'Price', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
@@ -38,8 +34,8 @@ class Animals extends CI_Controller
         } else {
             $data = [
                 'employee_id' => $data['user']['employee_id'],
-                'service_name' => $this->input->post('service_name'),
-                'service_price' => $this->input->post('service_price'),
+                'animal_name' => $this->input->post('service_name'),
+                'type_id' => $this->input->post('type_id'),
             ];
             $this->services_model->createServices($data);
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
