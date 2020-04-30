@@ -19,13 +19,47 @@ class Animals_model extends CI_Model
 
     public function get_by_employee()
     {
-        $this->db->select('animals.*, employees.employee_name');
+        $this->db->select('animals.*, employees.employee_name, animal_types.type_name, customers.customer_name');
         $this->db->join('employees', 'employee_id');
+        $this->db->join('customers', 'customer_id');
+        $this->db->join('animal_types', 'type_id');
         $this->db->from('animals');
 
         $query = $this->db->get();
 
         return $query->result_array();
+    }
+
+    public function getCustomers()
+    {
+        return $this->db->get('customers')->result_array();
+    }
+
+    public function getCustomerId($customer_name)
+    {
+        $this->db->select('customers.customer_id');
+        $this->db->from('customers');
+        $this->db->where('customer_name', $customer_name);
+
+        $query = $this->db->get();
+
+        return $query->row()->customer_id;
+    }
+
+    public function getTypes()
+    {
+        return $this->db->get('animal_types')->result_array();
+    }
+
+    public function getTypeId($type_name)
+    {
+        $this->db->select('animal_types.type_id');
+        $this->db->from('animal_types');
+        $this->db->where('type_name', $type_name);
+
+        $query = $this->db->get();
+
+        return $query->row()->type_id;
     }
 
     // Delete - insert now timestamp to deleted_at

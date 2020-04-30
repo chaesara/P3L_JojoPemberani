@@ -93,9 +93,16 @@
             <?php endif; ?>
             <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 2)) : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('animals'); ?>">
+                    <a class="nav-link collapsed" href="<?= base_url('animals'); ?>" data-toggle="collapse" data-target="#collapseAni" aria-expanded="true" aria-controls="collapseTwo">
                         <i class="fas fa-dog    "></i>
                         <span>Animals</span></a>
+                    </a>
+                    <div id="collapseAni" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="<?= base_url('animals'); ?>">Animals Data</a>
+                            <a class="collapse-item" href="<?= base_url('animalTypes'); ?>">Types Data</a>
+                        </div>
+                    </div>
                 </li>
             <?php endif; ?>
 
