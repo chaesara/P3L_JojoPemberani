@@ -44,7 +44,7 @@ class Animals extends CI_Controller
                 'type_id' => $this->animals_model->getTypeId($this->input->post('type_name')),
                 'animal_birth' => $this->input->post('animal_birth'),
             ];
-            $this->animals_model->createanimals($data);
+            $this->animals_model->createAnimals($data);
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
             animal added !
           </div>');

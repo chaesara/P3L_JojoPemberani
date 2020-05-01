@@ -84,29 +84,22 @@ class Suppliers extends RestController
         $id = $this->put('supplier_id');
 
         $data = [
-            'employee_id' => $this->post('employee_id'),
-            'supplier_name' => $this->post('supplier_name'),
-            'supplier_address' => $this->post('supplier_address'),
-            'supplier_phoneno' => $this->post('supplier_phoneno')
+            'employee_id' => $this->put('employee_id'),
+            'supplier_name' => $this->put('supplier_name'),
+            'supplier_address' => $this->put('supplier_address'),
+            'supplier_phoneno' => $this->put('supplier_phoneno')
         ];
 
-        if ($id === null) {
+        if ($this->Suppliers->updateSuppliers($data, $id) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'supplier has been updated'
+            ], 200);
+        } else {
             $this->response([
                 'status' => false,
-                'message' => 'No such supplier found'
+                'message' => 'update supplier failed'
             ], 404);
-        } else {
-            if ($this->Suppliers->updateSuppliers($data, $id) > 0) {
-                $this->response([
-                    'status' => true,
-                    'message' => 'supplier has been updated'
-                ], 200);
-            } else {
-                $this->response([
-                    'status' => false,
-                    'message' => 'update supplier failed'
-                ], 404);
-            }
         }
     }
 }

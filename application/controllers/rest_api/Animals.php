@@ -85,30 +85,22 @@ class Animals extends RestController
         $id = $this->put('animal_id');
 
         $data = [
-            'employee_id' => $this->post('employee_id'),
-            'type_id' => $this->post('type_id'),
-            'customer_id' => $this->post('customer_id'),
-            'animal_name' => $this->post('animal_name'),
-            'animal_birth' => $this->post('animal_birth')
+            'employee_id' => $this->put('employee_id'),
+            'type_id' => $this->put('type_id'),
+            'customer_id' => $this->put('customer_id'),
+            'animal_name' => $this->put('animal_name'),
+            'animal_birth' => $this->put('animal_birth')
         ];
-
-        if ($id === null) {
+        if ($this->animals->updateAnimals($data, $id) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'animal has been updated'
+            ], 200);
+        } else {
             $this->response([
                 'status' => false,
-                'message' => 'No such animal found'
+                'message' => 'update animal failed'
             ], 404);
-        } else {
-            if ($this->animals->updateAnimals($data, $id) > 0) {
-                $this->response([
-                    'status' => true,
-                    'message' => 'animal has been updated'
-                ], 200);
-            } else {
-                $this->response([
-                    'status' => false,
-                    'message' => 'update animal failed'
-                ], 404);
-            }
         }
     }
 }

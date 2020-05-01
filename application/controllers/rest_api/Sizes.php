@@ -82,27 +82,20 @@ class Sizes extends RestController
         $id = $this->put('size_id');
 
         $data = [
-            'employee_id' => $this->post('employee_id'),
-            'size_name' => $this->post('size_name')
+            'employee_id' => $this->put('employee_id'),
+            'size_name' => $this->put('size_name')
         ];
 
-        if ($id === null) {
+        if ($this->sizes->updateSizes($data, $id) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'size has been updated'
+            ], 200);
+        } else {
             $this->response([
                 'status' => false,
-                'message' => 'No such size found'
+                'message' => 'update size failed'
             ], 404);
-        } else {
-            if ($this->sizes->updateSizes($data, $id) > 0) {
-                $this->response([
-                    'status' => true,
-                    'message' => 'size has been updated'
-                ], 200);
-            } else {
-                $this->response([
-                    'status' => false,
-                    'message' => 'update size failed'
-                ], 404);
-            }
         }
     }
 }

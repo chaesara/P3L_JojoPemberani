@@ -82,27 +82,20 @@ class AnimalTypes extends RestController
         $id = $this->put('type_id');
 
         $data = [
-            'employee_id' => $this->post('employee_id'),
-            'type_name' => $this->post('type_name'),
+            'employee_id' => $this->put('employee_id'),
+            'type_name' => $this->put('type_name'),
         ];
 
-        if ($id === null) {
+        if ($this->types->updateAnimalTypes($data, $id) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'type has been updated'
+            ], 200);
+        } else {
             $this->response([
                 'status' => false,
-                'message' => 'No such type found'
+                'message' => 'update type failed'
             ], 404);
-        } else {
-            if ($this->types->updateAnimalTypes($data, $id) > 0) {
-                $this->response([
-                    'status' => true,
-                    'message' => 'type has been updated'
-                ], 200);
-            } else {
-                $this->response([
-                    'status' => false,
-                    'message' => 'update type failed'
-                ], 404);
-            }
         }
     }
 }

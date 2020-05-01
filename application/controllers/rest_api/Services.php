@@ -84,29 +84,22 @@ class Services extends RestController
         $id = $this->put('service_id');
 
         $data = [
-            'employee_id' => $this->post('employee_id'),
-            'size_id' => $this->post('size_id'),
-            'service_name' => $this->post('service_name'),
-            'service_price' => $this->post('service_price')
+            'employee_id' => $this->put('employee_id'),
+            'size_id' => $this->put('size_id'),
+            'service_name' => $this->put('service_name'),
+            'service_price' => $this->put('service_price')
         ];
 
-        if ($id === null) {
+        if ($this->services->updateServices($data, $id) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'service has been updated'
+            ], 200);
+        } else {
             $this->response([
                 'status' => false,
-                'message' => 'No such service found'
+                'message' => 'update service failed'
             ], 404);
-        } else {
-            if ($this->services->updateServices($data, $id) > 0) {
-                $this->response([
-                    'status' => true,
-                    'message' => 'service has been updated'
-                ], 200);
-            } else {
-                $this->response([
-                    'status' => false,
-                    'message' => 'update service failed'
-                ], 404);
-            }
         }
     }
 }

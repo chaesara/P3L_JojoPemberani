@@ -85,29 +85,21 @@ class Products extends RestController
         $id = $this->put('product_id');
 
         $data = [
-            'product_name' => $this->post('product_name'),
-            'product_price' => $this->post('product_price'),
-            'product_quantity' => $this->post('product_quantity'),
-            'image' => $this->post('image')
+            'product_name' => $this->put('product_name'),
+            'product_price' => $this->put('product_price'),
+            'product_quantity' => $this->put('product_quantity'),
+            'image' => $this->put('image')
         ];
-
-        if ($id === null) {
+        if ($this->products->updateProducts($data, $id) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'product has been updated'
+            ], 200);
+        } else {
             $this->response([
                 'status' => false,
-                'message' => 'No such product found'
+                'message' => 'update product failed'
             ], 404);
-        } else {
-            if ($this->products->updateProducts($data, $id) > 0) {
-                $this->response([
-                    'status' => true,
-                    'message' => 'product has been updated'
-                ], 200);
-            } else {
-                $this->response([
-                    'status' => false,
-                    'message' => 'update product failed'
-                ], 404);
-            }
         }
     }
 }

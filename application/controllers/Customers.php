@@ -33,7 +33,8 @@ class Customers extends CI_Controller
         $this->form_validation->set_rules('customer_name', 'Name', 'required');
         $this->form_validation->set_rules('customer_phoneno', 'Phone Number', 'required|numeric');
         $this->form_validation->set_rules('customer_address', 'Address', 'required');
-        $this->form_validation->set_rules('customer_birth', 'Address', 'required');
+        $this->form_validation->set_rules('customer_birth', 'birth date', 'required');
+        $this->form_validation->set_rules('customer_membership', 'membership', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);

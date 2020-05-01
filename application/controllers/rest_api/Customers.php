@@ -91,23 +91,16 @@ class Customers extends RestController
             'customer_birth' => $this->put('customer_birth')
         ];
 
-        if ($id === null) {
+        if ($this->customers->updateCustomers($data, $id) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'customer has been updated'
+            ], 200);
+        } else {
             $this->response([
                 'status' => false,
-                'message' => 'No such customer found'
+                'message' => 'update customer failed'
             ], 404);
-        } else {
-            if ($this->customers->updateCustomers($data, $id) > 0) {
-                $this->response([
-                    'status' => true,
-                    'message' => 'customer has been updated'
-                ], 200);
-            } else {
-                $this->response([
-                    'status' => false,
-                    'message' => 'update customer failed'
-                ], 404);
-            }
         }
     }
 }

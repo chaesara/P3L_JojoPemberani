@@ -93,27 +93,20 @@ class Employees extends RestController
             'employee_address' => $this->put('employee_address'),
             'employee_phoneno' => $this->put('employee_phoneno'),
             'employee_birth' => $this->put('employee_birth'),
-            'username' => htmlspecialchars($this->post('username', true)),
-            'password' => password_hash($this->post('password'), PASSWORD_DEFAULT)
+            'username' => htmlspecialchars($this->put('username', true)),
+            'password' => password_hash($this->put('password'), PASSWORD_DEFAULT)
         ];
 
-        if ($id === null) {
+        if ($this->Employees_model->updateEmployees($data, $id) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'employee has been updated'
+            ], 200);
+        } else {
             $this->response([
                 'status' => false,
-                'message' => 'No such user found'
+                'message' => 'update employee failed'
             ], 404);
-        } else {
-            if ($this->Employees_model->updateEmployees($data, $id) > 0) {
-                $this->response([
-                    'status' => true,
-                    'message' => 'employee has been updated'
-                ], 200);
-            } else {
-                $this->response([
-                    'status' => false,
-                    'message' => 'update employee failed'
-                ], 404);
-            }
         }
     }
 }
