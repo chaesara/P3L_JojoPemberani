@@ -60,7 +60,6 @@ class Suppliers extends RestController
     public function index_post()
     {
         $data = [
-            'supplier_id' => $this->post('supplier_id'),
             'employee_id' => $this->post('employee_id'),
             'supplier_name' => $this->post('supplier_name'),
             'supplier_address' => $this->post('supplier_address'),
@@ -85,7 +84,6 @@ class Suppliers extends RestController
         $id = $this->put('supplier_id');
 
         $data = [
-            'supplier_id' => $this->post('supplier_id'),
             'employee_id' => $this->post('employee_id'),
             'supplier_name' => $this->post('supplier_name'),
             'supplier_address' => $this->post('supplier_address'),

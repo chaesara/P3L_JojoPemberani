@@ -60,7 +60,6 @@ class Sizes extends RestController
     public function index_post()
     {
         $data = [
-            'size_id' => $this->post('size_id'),
             'employee_id' => $this->post('employee_id'),
             'size_name' => $this->post('size_name')
         ];
@@ -83,7 +82,6 @@ class Sizes extends RestController
         $id = $this->put('size_id');
 
         $data = [
-            'size_id' => $this->post('size_id'),
             'employee_id' => $this->post('employee_id'),
             'size_name' => $this->post('size_name')
         ];

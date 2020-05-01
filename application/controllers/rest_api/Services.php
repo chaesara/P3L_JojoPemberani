@@ -60,7 +60,6 @@ class Services extends RestController
     public function index_post()
     {
         $data = [
-            'service_id' => $this->post('service_id'),
             'employee_id' => $this->post('employee_id'),
             'size_id' => $this->post('size_id'),
             'service_name' => $this->post('service_name'),
@@ -85,7 +84,6 @@ class Services extends RestController
         $id = $this->put('service_id');
 
         $data = [
-            'service_id' => $this->post('service_id'),
             'employee_id' => $this->post('employee_id'),
             'size_id' => $this->post('size_id'),
             'service_name' => $this->post('service_name'),

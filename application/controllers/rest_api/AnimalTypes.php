@@ -60,7 +60,6 @@ class AnimalTypes extends RestController
     public function index_post()
     {
         $data = [
-            'type_id' => $this->post('type_id'),
             'employee_id' => $this->post('employee_id'),
             'type_name' => $this->post('type_name'),
         ];
@@ -83,7 +82,6 @@ class AnimalTypes extends RestController
         $id = $this->put('type_id');
 
         $data = [
-            'type_id' => $this->post('type_id'),
             'employee_id' => $this->post('employee_id'),
             'type_name' => $this->post('type_name'),
         ];

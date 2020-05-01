@@ -60,7 +60,6 @@ class Employees extends RestController
     public function index_post()
     {
         $data = [
-            'employee_id' => $this->post('employee_id'),
             'role_id' => $this->post('role_id'),
             'employee_name' => $this->post('employee_name'),
             'employee_address' => $this->post('employee_address'),

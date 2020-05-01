@@ -60,7 +60,6 @@ class Products extends RestController
     public function index_post()
     {
         $data = [
-            'product_id' => $this->post('product_id'),
             'employee_id' => $this->post('employee_id'),
             'product_name' => $this->post('product_name'),
             'product_price' => $this->post('product_price'),
@@ -86,10 +85,10 @@ class Products extends RestController
         $id = $this->put('product_id');
 
         $data = [
-            'product_name' => $this->put('product_name'),
-            'product_address' => $this->put('product_address'),
-            'product_phoneno' => $this->put('product_phoneno'),
-            'product_birth' => $this->put('product_birth')
+            'product_name' => $this->post('product_name'),
+            'product_price' => $this->post('product_price'),
+            'product_quantity' => $this->post('product_quantity'),
+            'image' => $this->post('image')
         ];
 
         if ($id === null) {

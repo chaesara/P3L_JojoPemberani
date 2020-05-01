@@ -60,7 +60,6 @@ class Customers extends RestController
     public function index_post()
     {
         $data = [
-            'customer_id' => $this->post('customer_id'),
             'employee_id' => $this->post('employee_id'),
             'customer_name' => $this->post('customer_name'),
             'customer_address' => $this->post('customer_address'),
