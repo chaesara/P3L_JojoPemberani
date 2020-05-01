@@ -7,7 +7,7 @@ class AnimalTypes extends RestController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('typeTypes_model', 'types');
+        $this->load->model('AnimalTypes_model', 'types');
     }
 
     public function index_get()
