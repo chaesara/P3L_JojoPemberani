@@ -57,6 +57,25 @@ class Products extends RestController
         }
     }
 
+    public function index_patch()
+    {
+        $id = $this->patch('product_id');
+
+        if ($this->products->deleteProducts($id) > 0) {
+            $this->response([
+                'status' => true,
+                'product_id' => $id,
+                'message' => 'deleted'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'product_id' => $id,
+                'message' => 'id not found'
+            ], 404);
+        }
+    }
+
     public function index_post()
     {
         $data = [

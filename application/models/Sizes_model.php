@@ -41,12 +41,6 @@ class Sizes_model extends CI_Model
         return $this->db->affected_rows();
     }
 
-    // Actually delete data from database
-    // public function deleteSizes($id)
-    // {
-    //     $this->db->delete('sizes', ['size_id' => $id]);
-    //     return $this->db->affected_rows();
-    // }
 
     public function createSizes($data)
     {
