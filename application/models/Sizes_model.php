@@ -37,7 +37,8 @@ class Sizes_model extends CI_Model
         $data = [
             'DELETED_AT' => $now
         ];
-        return $this->db->update('sizes', $data, ['size_id' => $id]);
+        $this->db->update('sizes', $data, ['size_id' => $id]);
+        return $this->db->affected_rows();
     }
 
     // Actually delete data from database

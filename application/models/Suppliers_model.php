@@ -37,7 +37,8 @@ class Suppliers_model extends CI_Model
         $data = [
             'DELETED_AT' => $now
         ];
-        return $this->db->update('suppliers', $data, ['supplier_id' => $id]);
+        $this->db->update('suppliers', $data, ['supplier_id' => $id]);
+        return $this->db->affected_rows();
     }
 
     // Actually delete data from database
