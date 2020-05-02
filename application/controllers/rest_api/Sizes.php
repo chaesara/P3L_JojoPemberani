@@ -36,24 +36,17 @@ class Sizes extends RestController
     {
         $id = $this->delete('size_id');
 
-        if ($id === null) {
+        if ($this->sizes->deleteSizes($id) > 0) {
+            $this->response([
+                'status' => true,
+                'size_id' => $id,
+                'message' => 'deleted'
+            ], 200);
+        } else {
             $this->response([
                 'status' => false,
-                'message' => 'Provide an ID !'
+                'message' => 'id not found'
             ], 404);
-        } else {
-            if ($this->sizes->deleteSizes($id) > 0) {
-                $this->response([
-                    'status' => true,
-                    'size_id' => $id,
-                    'message' => 'deleted'
-                ], 200);
-            } else {
-                $this->response([
-                    'status' => false,
-                    'message' => 'id not found'
-                ], 404);
-            }
         }
     }
 
