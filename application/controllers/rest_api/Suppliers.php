@@ -61,7 +61,7 @@ class Suppliers extends RestController
     {
         $id = $this->patch('supplier_id');
 
-        if ($this->suppliers->deleteSuppliers($id) > 0) {
+        if ($this->Suppliers->deleteSuppliers($id) > 0) {
             $this->response([
                 'status' => true,
                 'supplier_id' => $id,
