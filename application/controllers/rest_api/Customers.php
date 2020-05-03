@@ -57,6 +57,25 @@ class Customers extends RestController
         }
     }
 
+    public function index_patch()
+    {
+        $id = $this->patch('customer_id');
+
+        if ($this->customers->deleteCustomers($id) > 0) {
+            $this->response([
+                'status' => true,
+                'customer_id' => $id,
+                'message' => 'deleted'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'customer_id' => $id,
+                'message' => 'id not found'
+            ], 404);
+        }
+    }
+
     public function index_post()
     {
         $data = [

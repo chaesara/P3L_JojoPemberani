@@ -57,6 +57,25 @@ class Suppliers extends RestController
         }
     }
 
+    public function index_patch()
+    {
+        $id = $this->patch('supplier_id');
+
+        if ($this->suppliers->deleteSuppliers($id) > 0) {
+            $this->response([
+                'status' => true,
+                'supplier_id' => $id,
+                'message' => 'deleted'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'supplier_id' => $id,
+                'message' => 'id not found'
+            ], 404);
+        }
+    }
+
     public function index_post()
     {
         $data = [

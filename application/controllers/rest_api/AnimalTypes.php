@@ -57,6 +57,26 @@ class AnimalTypes extends RestController
         }
     }
 
+    // Delete
+    public function index_patch()
+    {
+        $id = $this->patch('type_id');
+
+        if ($this->types->deleteAnimalTypes($id) > 0) {
+            $this->response([
+                'status' => true,
+                'type_id' => $id,
+                'message' => 'deleted'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'type_id' => $id,
+                'message' => 'id not found'
+            ], 404);
+        }
+    }
+
     public function index_post()
     {
         $data = [

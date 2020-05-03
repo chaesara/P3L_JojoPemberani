@@ -57,6 +57,25 @@ class Employees extends RestController
         }
     }
 
+    public function index_patch()
+    {
+        $id = $this->patch('employee_id');
+
+        if ($this->employees->deleteEmployees($id) > 0) {
+            $this->response([
+                'status' => true,
+                'employee_id' => $id,
+                'message' => 'deleted'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'employee_id' => $id,
+                'message' => 'id not found'
+            ], 404);
+        }
+    }
+
     public function index_post()
     {
         $data = [

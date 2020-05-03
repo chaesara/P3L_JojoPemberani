@@ -45,6 +45,27 @@ class Sizes extends RestController
         } else {
             $this->response([
                 'status' => false,
+                'size_id' => $id,
+                'message' => 'id not found'
+            ], 404);
+        }
+    }
+
+    // Delete
+    public function index_patch()
+    {
+        $id = $this->patch('size_id');
+
+        if ($this->sizes->deleteSizes($id) > 0) {
+            $this->response([
+                'status' => true,
+                'size_id' => $id,
+                'message' => 'deleted'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'size_id' => $id,
                 'message' => 'id not found'
             ], 404);
         }
@@ -76,7 +97,7 @@ class Sizes extends RestController
 
         $data = [
             'employee_id' => $this->put('employee_id'),
-            'size_name' => $this->put('size_name')
+            'size_name' => $this->put('size_name'),
         ];
 
         if ($this->sizes->updateSizes($data, $id) > 0) {

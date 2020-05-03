@@ -57,6 +57,25 @@ class Services extends RestController
         }
     }
 
+    public function index_patch()
+    {
+        $id = $this->patch('service_id');
+
+        if ($this->services->deleteServices($id) > 0) {
+            $this->response([
+                'status' => true,
+                'service_id' => $id,
+                'message' => 'deleted'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'service_id' => $id,
+                'message' => 'id not found'
+            ], 404);
+        }
+    }
+
     public function index_post()
     {
         $data = [
