@@ -12,9 +12,20 @@ class Suppliers extends CI_Controller
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Suppliers :: Kouvee';
+<<<<<<< HEAD
         // $data['suppliers'] = $this->suppliers_model->getsuppliers();
         $data['suppliers'] = $this->suppliers_model->get_by_employee();
 
+=======
+        // $data['suppliers'] = $this->suppliers_model->getSuppliers();
+        $data['suppliers'] = $this->suppliers_model->get_by_employee();
+
+        //buat search
+        if ($this->input->post('keyword')) {
+            $data['suppliers'] = $this->suppliers_model->searchSuppliers();
+        }
+
+>>>>>>> 1338867e81a846c093c06997201f0f9fa35ad5bb
         $this->load->view('templates/admin_header', $data);
         $this->load->view('admin/suppliers', $data);
         $this->load->view('templates/admin_footer');
@@ -26,8 +37,13 @@ class Suppliers extends CI_Controller
         $data['title'] = 'Add Supplier';
 
         $this->form_validation->set_rules('supplier_name', 'Name', 'required');
+<<<<<<< HEAD
         $this->form_validation->set_rules('supplier_phoneno', 'Phone Number', 'required|numeric');
         $this->form_validation->set_rules('supplier_address', 'Address', 'required');
+=======
+        $this->form_validation->set_rules('supplier_address', 'Address', 'required');
+        $this->form_validation->set_rules('supplier_phoneno', 'Phone Number', 'required|numeric');
+>>>>>>> 1338867e81a846c093c06997201f0f9fa35ad5bb
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
@@ -64,8 +80,8 @@ class Suppliers extends CI_Controller
         $data['supplier'] = $this->suppliers_model->getSuppliers($id);
 
         $this->form_validation->set_rules('supplier_name', 'Name', 'required');
-        $this->form_validation->set_rules('supplier_phoneno', 'Phone Number', 'required|numeric');
         $this->form_validation->set_rules('supplier_address', 'Address', 'required');
+        $this->form_validation->set_rules('supplier_phoneno', 'Phone Number', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
@@ -83,4 +99,8 @@ class Suppliers extends CI_Controller
             redirect('suppliers');
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 1338867e81a846c093c06997201f0f9fa35ad5bb

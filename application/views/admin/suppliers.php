@@ -4,13 +4,16 @@
     <!-- Alert Successfully add employee -->
     <?= $this->session->flashdata('flash'); ?>
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">suppliers List</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+    <h1 class="h3 mb-2 text-gray-800">Suppliers List</h1>
     <a href="<?= base_url('suppliers/add_suppliers'); ?>"><button type="button" class="btn btn-primary mb-3">Add Supplier</button></a>
-
-    <div class="input-group mt-3 mb-3">
-        <input type="text" class="form-control" id="searchInput" onkeyup="search()" placeholder="Search by a name...">
-    </div>
+    <form action="" method="post">
+        <div class="input-group mt-3 mb-3">
+            <input type="text" class="form-control" placeholder="Enter a name..." name="keyword" value="<?= set_value('keyword'); ?>">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
     <!-- DataTales Example -->
 
     <div class="card shadow mb-4">
@@ -28,6 +31,7 @@
                     </thead>
                     <tbody>
                         <?php if ($suppliers != null) : ?>
+<<<<<<< HEAD
                             <?php foreach ($suppliers as $c) : ?>
                                 <?php if ($c['DELETED_AT'] === NULL) : ?>
                                     <tr>
@@ -38,6 +42,18 @@
                                         <td>
                                             <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>suppliers/edit_suppliers/<?= $c['supplier_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
                                             <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>suppliers/delete_suppliers/<?= $c['supplier_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
+=======
+                            <?php foreach ($suppliers as $s) : ?>
+                                <?php if ($s['DELETED_AT'] === NULL) : ?>
+                                    <tr>
+                                        <td><?= $s['supplier_name'] ?></td>
+                                        <td><?= $s['supplier_address'] ?></td>
+                                        <td><?= $s['supplier_phoneno'] ?></td>
+                                        <td><?= $s['employee_name'] ?></td>
+                                        <td>
+                                            <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>suppliers/edit_suppliers/<?= $s['supplier_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
+                                            <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>suppliers/delete_suppliers/<?= $s['supplier_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
+>>>>>>> 1338867e81a846c093c06997201f0f9fa35ad5bb
                                         </td>
                                     </tr>
                                 <?php endif; ?>

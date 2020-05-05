@@ -91,6 +91,13 @@
                         <span>Customers</span></a>
                 </li>
             <?php endif; ?>
+            <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 3)) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('suppliers'); ?>">
+                        <i class="fas fa-store" aria-hidden="true"></i>
+                        <span>Suppliers</span></a>
+                </li>
+            <?php endif; ?>
             <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 2)) : ?>
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="<?= base_url('animals'); ?>" data-toggle="collapse" data-target="#collapseAni" aria-expanded="true" aria-controls="collapseTwo">
@@ -103,6 +110,13 @@
                             <a class="collapse-item" href="<?= base_url('animalTypes'); ?>">Types Data</a>
                         </div>
                     </div>
+                </li>
+            <?php endif; ?>
+            <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 3)) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('animal_types'); ?>">
+                        <i class="fas fa-dog" aria-hidden="true"></i>
+                        <span>Animal Types</span></a>
                 </li>
             <?php endif; ?>
 
