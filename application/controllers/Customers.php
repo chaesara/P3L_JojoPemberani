@@ -87,10 +87,14 @@ class Customers extends CI_Controller
                 'customer_name' => $this->input->post('customer_name'),
                 'customer_address' => $this->input->post('customer_address'),
                 'customer_phoneno' => $this->input->post('customer_phoneno'),
-                'customer_birth' => $this->input->post('customer_birth')
+                'customer_birth' => $this->input->post('customer_birth'),
+                'customer_membership' => $this->input->post('customer_membership'),
             ];
 
             $this->customers_model->updateCustomers($data, $id);
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
+            Customer updated !
+          </div>');
             redirect('customers');
         }
     }

@@ -56,7 +56,7 @@ class Sizes extends CI_Controller
     public function edit_Sizes($id)
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
-        $data['size'] = $this->Sizes_model->getSizes($id);
+        $data['size'] = $this->sizes_model->getSizes($id);
         $data['title'] = 'Edit size : ' . $data['size']['size_name'];
 
         $this->form_validation->set_rules('size_name', 'Name', 'required');
@@ -72,6 +72,9 @@ class Sizes extends CI_Controller
             ];
 
             $this->sizes_model->updateSizes($data, $id);
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
+            Size updated !
+          </div>');
             redirect('sizes');
         }
     }

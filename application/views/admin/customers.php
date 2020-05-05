@@ -31,7 +31,7 @@
                     <tbody>
                         <?php if ($customers != null) : ?>
                             <?php foreach ($customers as $c) : ?>
-                                <?php if ($c['DELETED_AT'] === NULL) : ?>
+                                
                                     <tr>
                                         <td><?= $c['customer_name'] ?></td>
                                         <td><?= $c['customer_address'] ?></td>
@@ -44,7 +44,7 @@
                                             <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>customers/delete_customers/<?= $c['customer_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                         </td>
                                     </tr>
-                                <?php endif; ?>
+                                
                             <?php endforeach; ?>
                         <?php else : ?>
                             <tr>

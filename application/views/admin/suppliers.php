@@ -4,8 +4,7 @@
     <!-- Alert Successfully add employee -->
     <?= $this->session->flashdata('flash'); ?>
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">suppliers List</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+    <h1 class="h3 mb-2 text-gray-800">Suppliers List</h1>
     <a href="<?= base_url('suppliers/add_suppliers'); ?>"><button type="button" class="btn btn-primary mb-3">Add Supplier</button></a>
 
     <div class="input-group mt-3 mb-3">

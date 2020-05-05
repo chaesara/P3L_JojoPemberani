@@ -19,7 +19,7 @@ class Services_model extends CI_Model
 
     public function getSizes()
     {
-        return $this->db->get('sizes')->result_array();
+        return $this->db->get_where('sizes', ['deleted_at'=> null])->result_array();
     }
 
     public function getSizeId($size_name)
@@ -39,6 +39,7 @@ class Services_model extends CI_Model
         $this->db->join('employees', 'employee_id');
         $this->db->join('sizes', 'size_id');
         $this->db->from('services');
+        $this->db->where('services.DELETED_AT', NULL);
 
         $query = $this->db->get();
 

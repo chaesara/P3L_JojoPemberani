@@ -24,6 +24,7 @@ class Animals_model extends CI_Model
         $this->db->join('customers', 'customer_id');
         $this->db->join('animal_types', 'type_id');
         $this->db->from('animals');
+        $this->db->where('animals.DELETED_AT', NULL);
 
         $query = $this->db->get();
 
@@ -32,7 +33,7 @@ class Animals_model extends CI_Model
 
     public function getCustomers()
     {
-        return $this->db->get('customers')->result_array();
+        return $this->db->get_where('customers', ['deleted_at'=> null])->result_array();
     }
 
     public function getCustomerId($customer_name)
@@ -48,7 +49,7 @@ class Animals_model extends CI_Model
 
     public function getTypes()
     {
-        return $this->db->get('animal_types')->result_array();
+        return $this->db->get_where('animal_types', ['deleted_at'=> null])->result_array();
     }
 
     public function getTypeId($type_name)

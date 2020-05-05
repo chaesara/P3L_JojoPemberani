@@ -112,6 +112,9 @@ class Employees extends CI_Controller
             ];
 
             $this->employees->updateEmployees($data, $id);
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
+            Employee updated !
+          </div>');
             redirect('employees');
         }
     }

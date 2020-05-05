@@ -22,6 +22,7 @@ class Sizes_model extends CI_Model
         $this->db->select('sizes.*, employees.employee_name');
         $this->db->join('employees', 'employee_id');
         $this->db->from('sizes');
+        $this->db->where('sizes.DELETED_AT', NULL);
 
         $query = $this->db->get();
 

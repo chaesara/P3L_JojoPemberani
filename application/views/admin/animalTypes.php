@@ -27,16 +27,14 @@
                     <tbody>
                         <?php if ($types != null) : ?>
                             <?php foreach ($types as $t) : ?>
-                                <?php if ($t['DELETED_AT'] === NULL) : ?>
-                                    <tr>
-                                        <td><?= $t['type_name'] ?></td>
-                                        <td><?= $t['employee_name'] ?></td>
-                                        <td>
-                                            <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>types/edit_types/<?= $t['type_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
-                                            <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>types/delete_types/<?= $t['type_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        </td>
-                                    </tr>
-                                <?php endif; ?>
+                                <tr>
+                                    <td><?= $t['type_name'] ?></td>
+                                    <td><?= $t['employee_name'] ?></td>
+                                    <td>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>animalTypes/edit_animalTypes/<?= $t['type_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>animalTypes/delete_animalTypes/<?= $t['type_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </td>
+                                </tr>
                             <?php endforeach; ?>
                         <?php else : ?>
                             <tr>

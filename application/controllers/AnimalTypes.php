@@ -48,7 +48,7 @@ class AnimalTypes extends CI_Controller
     {
         $this->AnimalTypes_model->deleteAnimalTypes($id);
         $this->session->set_flashdata('flash', '<div class="alert alert-danger" role="alert">
-            AnimalType deleted !
+            Animal Type deleted !
           </div>');
         redirect('animalTypes');
     }
@@ -70,8 +70,10 @@ class AnimalTypes extends CI_Controller
                 'employee_id' => $data['user']['employee_id'],
                 'AnimalType_name' => $this->input->post('AnimalType_name')
             ];
-
             $this->AnimalTypes_model->updateAnimalTypes($data, $id);
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
+            Animal Type updated !
+          </div>');
             redirect('animalTypes');
         }
     }

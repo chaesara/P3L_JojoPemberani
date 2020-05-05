@@ -80,6 +80,9 @@ class Suppliers extends CI_Controller
             ];
 
             $this->suppliers_model->updateSuppliers($data, $id);
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
+            Supplier updated !
+          </div>');
             redirect('suppliers');
         }
     }

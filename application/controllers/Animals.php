@@ -23,14 +23,14 @@ class Animals extends CI_Controller
     public function add_animals()
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
-        $data['title'] = 'Add Ansimal';
+        $data['title'] = 'Add Animal';
         $data['customers'] = $this->animals_model->getCustomers();
         $data['types'] = $this->animals_model->getTypes();
 
         $this->form_validation->set_rules('animal_name', 'Name', 'required|is_unique[animals.animal_name]');
         $this->form_validation->set_rules('animal_birth', 'Birth Date', 'required');
-        $this->form_validation->set_rules('customer_id', 'Customer ID', 'required');
-        $this->form_validation->set_rules('type_id', 'Type ID', 'required');
+        $this->form_validation->set_rules('customer_name', 'Customer ID', 'required');
+        $this->form_validation->set_rules('type_name', 'Type ID', 'required');
         
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
@@ -46,7 +46,7 @@ class Animals extends CI_Controller
             ];
             $this->animals_model->createAnimals($data);
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
-            animal added !
+            Animal added !
           </div>');
             redirect('animals');
         }
@@ -84,8 +84,10 @@ class Animals extends CI_Controller
                 'type_id' => $this->animals_model->getTypeId($this->input->post('type_name')),
                 'animal_birth' => $this->input->post('animal_birth'),
             ];
-
             $this->animals_model->updateAnimals($data, $id);
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
+            Animal updated !
+          </div>');
             redirect('animals');
         }
     }

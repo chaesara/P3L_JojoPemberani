@@ -86,6 +86,9 @@ class Products extends CI_Controller
             ];
 
             $this->products_model->updateProducts($data, $id);
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
+            Product updated !
+          </div>');
             redirect('products');
         }
     }

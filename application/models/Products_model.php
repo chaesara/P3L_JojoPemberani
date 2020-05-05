@@ -22,6 +22,7 @@ class Products_model extends CI_Model
         $this->db->select('products.*, employees.employee_name');
         $this->db->join('employees', 'employee_id');
         $this->db->from('products');
+        $this->db->where('products.DELETED_AT', NULL);
 
         $query = $this->db->get();
 

@@ -83,7 +83,8 @@ class Customers extends RestController
             'customer_name' => $this->post('customer_name'),
             'customer_address' => $this->post('customer_address'),
             'customer_phoneno' => $this->post('customer_phoneno'),
-            'customer_birth' => $this->post('customer_birth')
+            'customer_birth' => $this->post('customer_birth'),
+            'customer_membership' => $this->post('customer_membership')
         ];
 
         if ($this->customers->createCustomers($data) > 0) {
@@ -107,7 +108,8 @@ class Customers extends RestController
             'customer_name' => $this->put('customer_name'),
             'customer_address' => $this->put('customer_address'),
             'customer_phoneno' => $this->put('customer_phoneno'),
-            'customer_birth' => $this->put('customer_birth')
+            'customer_birth' => $this->put('customer_birth'),
+            'customer_membership' => $this->put('customer_membership')
         ];
 
         if ($this->customers->updateCustomers($data, $id) > 0) {
