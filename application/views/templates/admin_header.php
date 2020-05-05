@@ -72,11 +72,25 @@
                         <span>Customers</span></a>
                 </li>
             <?php endif; ?>
+            <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 3)) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('suppliers'); ?>">
+                        <i class="fas fa-store" aria-hidden="true"></i>
+                        <span>Suppliers</span></a>
+                </li>
+            <?php endif; ?>
             <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 2)) : ?>
                 <li class="nav-item">
                     <a class="nav-link" href="<?= base_url('animals'); ?>">
                         <i class="fas fa-dog    "></i>
                         <span>Animals</span></a>
+                </li>
+            <?php endif; ?>
+            <?php if (($this->session->userdata('role_id') == 1) || ($this->session->userdata('role_id') == 3)) : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('animal_types'); ?>">
+                        <i class="fas fa-dog" aria-hidden="true"></i>
+                        <span>Animal Types</span></a>
                 </li>
             <?php endif; ?>
 

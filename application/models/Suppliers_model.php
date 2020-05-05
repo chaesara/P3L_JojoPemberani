@@ -31,13 +31,13 @@ class Suppliers_model extends CI_Model
     // Delete - insert now timestamp to deleted_at
     public function deleteSuppliers($id)
     {
-        date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
+        date_default_timezone_set('Asia/Karachi'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
 
         $data = [
             'DELETED_AT' => $now
         ];
-        return $this->db->update('suppliers', $data, ['supplier_id' => $id]);
+        $this->db->update('suppliers', $data, ['supplier_id' => $id]);
     }
 
     // Actually delete data from database
@@ -57,5 +57,19 @@ class Suppliers_model extends CI_Model
     {
         $this->db->update('suppliers', $data, ['supplier_id' => $id]);
         return $this->db->affected_rows();
+    }
+
+    public function searchSuppliers()
+    {
+        $keyword = $this->input->post('keyword', true);
+
+        $this->db->select('suppliers.*, employees.employee_name');
+        $this->db->join('employees', 'employee_id');
+        $this->db->from('suppliers');
+        $this->db->like('supplier_name', $keyword);
+
+        $query = $this->db->get();
+
+        return $query->result_array();
     }
 }

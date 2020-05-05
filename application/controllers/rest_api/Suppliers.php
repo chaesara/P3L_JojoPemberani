@@ -7,7 +7,7 @@ class Suppliers extends RestController
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Suppliers_model', 'Suppliers');
+        $this->load->model('Suppliers_model', 'suppliers');
     }
 
     public function index_get()
@@ -15,9 +15,9 @@ class Suppliers extends RestController
         $id = $this->get('supplier_id');
 
         if ($id === null) {
-            $suppliers = $this->Suppliers->getSuppliers();
+            $suppliers = $this->suppliers->getSuppliers();
         } else {
-            $suppliers = $this->Suppliers->getSuppliers($id);
+            $suppliers = $this->suppliers->getSuppliers($id);
         }
 
         if ($suppliers) {
@@ -27,7 +27,7 @@ class Suppliers extends RestController
             // Set the response and exit
             $this->response([
                 'status' => false,
-                'message' => 'No Suppliers were found'
+                'message' => 'No suppliers were found'
             ], 404);
         }
     }
@@ -42,7 +42,7 @@ class Suppliers extends RestController
                 'message' => 'Provide an ID !'
             ], 404);
         } else {
-            if ($this->Suppliers->deleteSuppliers($id) > 0) {
+            if ($this->suppliers->deleteSuppliers($id) > 0) {
                 $this->response([
                     'status' => true,
                     'supplier_id' => $id,
@@ -67,7 +67,7 @@ class Suppliers extends RestController
             'supplier_phoneno' => $this->post('supplier_phoneno')
         ];
 
-        if ($this->Suppliers->createSuppliers($data) > 0) {
+        if ($this->suppliers->createSuppliers($data) > 0) {
             $this->response([
                 'status' => true,
                 'message' => 'supplier has been created'
@@ -85,11 +85,9 @@ class Suppliers extends RestController
         $id = $this->put('supplier_id');
 
         $data = [
-            'supplier_id' => $this->post('supplier_id'),
-            'employee_id' => $this->post('employee_id'),
-            'supplier_name' => $this->post('supplier_name'),
-            'supplier_address' => $this->post('supplier_address'),
-            'supplier_phoneno' => $this->post('supplier_phoneno')
+            'supplier_name' => $this->put('supplier_name'),
+            'supplier_address' => $this->put('supplier_address'),
+            'supplier_phoneno' => $this->put('supplier_phoneno')
         ];
 
         if ($id === null) {
@@ -98,7 +96,7 @@ class Suppliers extends RestController
                 'message' => 'No such supplier found'
             ], 404);
         } else {
-            if ($this->Suppliers->updateSuppliers($data, $id) > 0) {
+            if ($this->suppliers->updateSuppliers($data, $id) > 0) {
                 $this->response([
                     'status' => true,
                     'message' => 'supplier has been updated'
