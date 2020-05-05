@@ -56,10 +56,10 @@ class AnimalTypes extends CI_Controller
     public function edit_animalTypes($id)
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
-        $data['types'] = $this->AnimalTypes_model->getAnimalTypes($id);
-        $data['title'] = 'Edit AnimalType : ' . $data['AnimalType']['AnimalType_name'];
+        $data['type'] = $this->AnimalTypes_model->getAnimalTypes($id);
+        $data['title'] = 'Edit AnimalType : ' . $data['type']['type_name'];
 
-        $this->form_validation->set_rules('AnimalType_name', 'Name', 'required');
+        $this->form_validation->set_rules('type_name', 'Name', 'required|is_unique[animal_types.type_name]');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
@@ -68,7 +68,7 @@ class AnimalTypes extends CI_Controller
         } else {
             $data = [
                 'employee_id' => $data['user']['employee_id'],
-                'AnimalType_name' => $this->input->post('AnimalType_name')
+                'type_name' => $this->input->post('type_name')
             ];
             $this->AnimalTypes_model->updateAnimalTypes($data, $id);
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">

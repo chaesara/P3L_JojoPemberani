@@ -65,12 +65,14 @@ class Animals extends CI_Controller
     {
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
         $data['animal'] = $this->animals_model->getAnimals($id);
+        $data['customers'] = $this->animals_model->getCustomers();
+        $data['types'] = $this->animals_model->getTypes();
         $data['title'] = 'Edit Animal : ' . $data['animal']['animal_name'];
 
-        $this->form_validation->set_rules('animal_name', 'Name', 'required|is_unique[animals.animal_name]');
+        $this->form_validation->set_rules('animal_name', 'Name', 'required');
         $this->form_validation->set_rules('animal_birth', 'Birth Date', 'required');
-        $this->form_validation->set_rules('customer_id', 'Customer ID', 'required');
-        $this->form_validation->set_rules('type_id', 'Type ID', 'required');
+        $this->form_validation->set_rules('customer_name', 'Customer', 'required');
+        $this->form_validation->set_rules('type_name', 'Type', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);

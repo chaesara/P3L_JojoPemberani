@@ -59,7 +59,7 @@ class Sizes extends CI_Controller
         $data['size'] = $this->sizes_model->getSizes($id);
         $data['title'] = 'Edit size : ' . $data['size']['size_name'];
 
-        $this->form_validation->set_rules('size_name', 'Name', 'required');
+        $this->form_validation->set_rules('size_name', 'Name', 'required|is_unique[Sizes.size_name]');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
