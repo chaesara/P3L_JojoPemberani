@@ -5,7 +5,7 @@
         <form method="post" class="my-3 mx-3" id="submit" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="size_name">Size Name</label>
-                <input type="text" class="form-control" id="size_name" name="size_name" placeholder="Enter size name..." value="<?= $size['size_name']; ?>">
+                <input type="text" class="form-control" id="size_name" name="size_name" value="<?= $size['size_name']; ?>">
                 <?= form_error('size_name', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <hr class="sidebar-divider">

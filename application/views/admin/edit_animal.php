@@ -5,12 +5,12 @@
         <form method="post" class="my-3 mx-3" id="submit" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="animal_name">Animal Name</label>
-                <input type="text" class="form-control form-control-user" id="animal_name" name="animal_name" placeholder="Enter a animal name..." value="<?= $animal['animal_name'] ?>">
+                <input type="text" class="form-control form-control-user" id="animal_name" name="animal_name" value="<?= $animal['animal_name'] ?>">
                 <?= form_error('animal_name', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <div class="form-group">
                 <label for="animal_birth">Birth Date</label>
-                <input type="date" class="form-control form-control-user" id="animal_birth" name="animal_birth" placeholder="Birth Date" value="<?= $animal['animal_birth'] ?>">
+                <input type="date" class="form-control form-control-user" id="animal_birth" name="animal_birth" value="<?= $animal['animal_birth'] ?>">
                 <?= form_error('animal_birth', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <div class="form-group">

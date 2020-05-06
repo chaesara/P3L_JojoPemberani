@@ -4,27 +4,27 @@
         <form class="my-3 mx-3" method="post" action="">
             <div class="form-group">
                 <label for="employee_name">Full Name</label>
-                <input type="text" class="form-control form-control-user" id="employee_name" name="employee_name" placeholder="Full Name" value="<?= $employee['employee_name']; ?>">
+                <input type="text" class="form-control form-control-user" id="employee_name" name="employee_name" value="<?= $employee['employee_name']; ?>">
             </div>
             <?= form_error('employee_name', '<small class="text-danger pl-3">', '</small>') ?>
             <div class="form-group">
                 <label for="employee_address">Address</label>
-                <input type="text" class="form-control form-control-user" id="employee_address" name="employee_address" placeholder="Enter Address" value="<?= $employee['employee_address']; ?>">
+                <input type="text" class="form-control form-control-user" id="employee_address" name="employee_address" value="<?= $employee['employee_address']; ?>">
             </div>
             <?= form_error('employee_address', '<small class="text-danger pl-3">', '</small>') ?>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">+62</span>
-                <input type="text" class="form-control form-control-user" name="employee_phoneno" placeholder="Phone Number" value="<?= $employee['employee_phoneno']; ?>">
+                <input type="text" class="form-control form-control-user" name="employee_phoneno" value="<?= $employee['employee_phoneno']; ?>">
                 <?= form_error('employee_phoneno', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <div class="form-group">
                 <label for="employee_birth">Birth Date</label>
-                <input type="date" class="form-control form-control-user" id="employee_birth" name="employee_birth" placeholder="Birth Date" value="<?= $employee['employee_birth']; ?>">
+                <input type="date" class="form-control form-control-user" id="employee_birth" name="employee_birth" value="<?= $employee['employee_birth']; ?>">
             </div>
             <hr class="sidebar-divider">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control form-control-user" id="username" name="username" placeholder="Username" value="<?= $employee['username']; ?>">
+                <input type="text" class="form-control form-control-user" id="username" name="username" value="<?= $employee['username']; ?>">
                 <?= form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <div class="form-group">

@@ -5,7 +5,7 @@
         <form method="post" class="my-3 mx-3" id="submit" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Service Name</label>
-                <input type="text" class="form-control" id="service_name" name="service_name" placeholder="Grooming">
+                <input type="text" class="form-control" id="service_name" name="service_name">
                 <?= form_error('service_name', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
 
@@ -13,7 +13,7 @@
                 <label for="price">Price</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">Rp </span>
-                    <input type="text" class="form-control" id="service_price" name="service_price" placeholder="how valuable is it ?">
+                    <input type="text" class="form-control" id="service_price" name="service_price">
                     <?= form_error('service_price', '<small class="text-danger pl-3">', '</small>') ?>
                 </div>
             </div>

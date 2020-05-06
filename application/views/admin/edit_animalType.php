@@ -5,7 +5,7 @@
         <form method="post" class="my-3 mx-3" id="submit" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="type_name">Type Name</label>
-                <input type="text" class="form-control" id="type_name" name="type_name" placeholder="Enter type name..." value="<?= $type['type_name']; ?>">
+                <input type="text" class="form-control" id="type_name" name="type_name" value="<?= $type['type_name']; ?>">
                 <?= form_error('type_name', '<small class="text-danger pl-3">', '</small>') ?>
             </div>
             <hr class="sidebar-divider">
