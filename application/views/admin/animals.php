@@ -5,7 +5,6 @@
     <?= $this->session->flashdata('flash'); ?>
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Animals</h1>
-    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
     <a href="<?= base_url('animals/add_animals'); ?>"><button type="button" class="btn btn-primary mb-3">Add Animal</button></a>
 
     <div class="input-group mt-3 mb-3">
@@ -30,19 +29,17 @@
                     </thead>
                     <tbody>
                         <?php foreach ($animals as $a) : ?>
-                            <?php if ($a['DELETED_AT'] === NULL) : ?>
-                                <tr>
-                                    <td><?= $a['animal_name'] ?></td>
-                                    <td><?= $a['type_name'] ?></td>
-                                    <td><?= $a['customer_name'] ?></td>
-                                    <td><?= $a['animal_birth'] ?></td>
-                                    <td><?= $a['employee_name'] ?></td>
-                                    <td>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>animals/edit_animals/<?= $a['animal_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
-                                        <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>animals/delete_animals/<?= $a['animal_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
+                            <tr>
+                                <td><?= $a['animal_name'] ?></td>
+                                <td><?= $a['type_name'] ?></td>
+                                <td><?= $a['customer_name'] ?></td>
+                                <td><?= $a['animal_birth'] ?></td>
+                                <td><?= $a['employee_name'] ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-secondary" onclick="window.location.href = '<?= base_url(); ?>animals/edit_animals/<?= $a['animal_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
+                                    <button type="button" class="btn btn-danger" onclick="window.location.href = '<?= base_url(); ?>animals/delete_animals/<?= $a['animal_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>

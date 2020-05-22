@@ -24,21 +24,22 @@
 
 <body id="page-top">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="nav_bar_main">
         <div class="container">
 
-            <a class="navbar-brand" href="<?= base_url(''); ?>">
-                <i class="fas fa-dog"></i>
-                Kouvee
-            </a>
-
+            <div class="navbar-nav">
+                <a class="navbar-brand" href="<?= base_url(''); ?>">
+                    <i class="fas fa-dog"></i>
+                    Kouvee Pet
+                </a>
+            </div>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href=#>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('main/menu_products') ?>">Products</a>
+                        <a class="nav-link" href=#>Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Services</a>
@@ -53,9 +54,6 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">

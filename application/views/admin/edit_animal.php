@@ -39,7 +39,7 @@
             </div>
             <hr class="sidebar-divider">
             <button type="submit" class="btn btn-primary btn-user btn-block">
-                Add Animal
+                Confirm Edit
             </button>
         </form>
     </div>
