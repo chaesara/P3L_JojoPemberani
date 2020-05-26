@@ -83,6 +83,7 @@ class Products extends RestController
             'product_name' => $this->post('product_name'),
             'product_price' => $this->post('product_price'),
             'product_quantity' => $this->post('product_quantity'),
+            'product_min' => $this->post('product_min'),
             'image' => $this->post('image')
         ];
 
