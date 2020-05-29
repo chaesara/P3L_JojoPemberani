@@ -1,18 +1,18 @@
 <div class="container-fluid">
     <div class="card center o-hidden border-0 my-5 mx-auto">
-        <form id="supply_form" class="my-3 mx-3" method="post">
+        <form id="transaction_form" class="my-3 mx-3" method="post">
 
             <div class="form-group">
-                <label for="Suppliers">Supplier</label>
-                <select class="form-control" name="supplier_name" id="supplier_name">
-                    <?php foreach ($suppliers as $c) : ?>
-                        <option value="<?= $c['supplier_name'] ?>"><?= $c['supplier_name'] ?></option>
+                <label for="Customer">Customer</label>
+                <select class="form-control" name="customer_name" id="customer_name">
+                    <?php foreach ($customers as $c) : ?>
+                        <option value="<?= $c['customer_name'] ?>"><?= $c['customer_name'] ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <hr class="sidebar-divider">
             <button type="submit" class="btn btn-primary btn-user btn-block">
-                Add Supply
+                Add Transaction
             </button>
 
         </form>
@@ -24,10 +24,10 @@
 <script>
     $(document).ready(function() {
 
-        $('#supply_form').on('submit', function(event) {
+        $('#transaction_form').on('submit', function(event) {
             event.preventDefault();
             $.ajax({
-                url: "<?= base_url('supplies/add_supplies'); ?>",
+                url: "<?= base_url('transactions/add_service_transactions'); ?>",
                 method: "POST",
                 data: $(this).serialize(),
                 dataType: "json"

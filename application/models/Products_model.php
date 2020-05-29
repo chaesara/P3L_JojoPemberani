@@ -32,12 +32,14 @@ class Products_model extends CI_Model
     // Delete - insert now timestamp to deleted_at
     public function deleteProducts($id)
     {
+        // Hard delete ' Product Image '
         $query = $this->db->select('image')->from('products')->where('product_id', $id)->get();
         $image = $query->row()->image;
 
         $pathfile = './assets/products/' . $image;
         unlink($pathfile);
-
+        // End here
+        
         date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
 

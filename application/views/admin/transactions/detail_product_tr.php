@@ -1,10 +1,11 @@
 <div class="container-fluid">
     <?= $this->session->flashdata('flash'); ?>
-    <h1 class="h3 mb-2 text-gray-800">Supply Code : <?= $supply['supply_code']; ?></h1>
-    <?php if ($supply['supply_status'] === 'Completed') : ?>
-        <h5>Status : <span class="badge badge-success mb-3"><?= $supply['supply_status']; ?></span></h5>
+    <h1 class="h3 mb-2 text-gray-800">Transaction Code : <?= $transaction['transaction_code']; ?></h1>
+    <h5 class="h3 mb-2 text-gray-600">Customer : <?= $transaction['customer_name']; ?></h5>
+    <?php if ($transaction['transaction_status'] === 'Completed') : ?>
+        <h5>Status : <span class="badge badge-success mb-3"><?= $transaction['transaction_status']; ?></span></h5>
     <?php else : ?>
-        <h5>Status : <span class="badge badge-warning mb-3"><?= $supply['supply_status']; ?></span></h5>
+        <h5>Status : <span class="badge badge-warning mb-3"><?= $transaction['transaction_status']; ?></span></h5>
     <?php endif; ?>
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -13,54 +14,57 @@
                     <thead>
                         <tr>
                             <th>Product Name</th>
-                            <th>Packaging</th>
                             <th>Qty</th>
+                            <th>Sub Total</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php if ($details != null) : ?>
+                        <?php $subtotal = 0;
+                        if ($details != null) : ?>
                             <?php foreach ($details as $d) : ?>
                                 <tr>
                                     <td><?= $d['product_name'] ?></td>
-                                    <td><?= $d['supply_detail_package'] ?></td>
-                                    <td><?= $d['supply_detail_quantity'] ?></td>
+                                    <td><?= $d['transaction_product_quantity'] ?></td>
+                                    <td><?= $d['transaction_product_subtotal'] ?></td>
                                     <td>
-                                        <?php if ($supply['supply_status'] != 'Completed') : ?>
-                                            <button type="button" class="btn btn-circle btn-secondary" onclick="window.location.href = '<?= base_url(); ?>supplies/edit_details/<?= $d['supply_detail_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
-                                            <button type="button" class="btn btn-circle btn-danger" onclick="window.location.href = '<?= base_url(); ?>supplies/delete_details/<?= $d['supply_detail_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        <?php endif; ?>
+                                        <button type="button" class="btn btn-circle btn-secondary" onclick="window.location.href = '<?= base_url(); ?>transactions/edit_product_details/<?= $d['transaction_product_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
+                                        <button type="button" class="btn btn-circle btn-danger" onclick="window.location.href = '<?= base_url(); ?>transactions/delete_product_details/<?= $d['transaction_product_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </td>
+                                    <?php $subtotal += $d['transaction_product_subtotal']; ?>
                                 </tr>
                             <?php endforeach; ?>
                         <?php else : ?>
                             <tr>
                                 <td colspan="7">
                                     <h3 class="text-center">list was empty</h3>
-                                    <p class="text-center">what are you looking for ?</p>
                                 </td>
                             </tr>
                         <?php endif; ?>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"><b>Total</b></td>
+                            <td><b><?= $subtotal ?></b></td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
     </div>
 
     <div class="input-group-btn my-3">
-        <?php if ($supply['supply_status'] != 'Completed') : ?>
-            <a href="<?= base_url(); ?>supplies/add_details/<?= $supply['supply_id']; ?>"><button type="button" class="btn btn-primary mb-3">Add Product</button></a>
+        <?php if ($transaction['transaction_status'] === 'Draft') : ?>
+            <a href="<?= base_url(); ?>transactions/add_product_details/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-primary mb-3">Add Product</button></a>
             <!-- Button trigger modal -->
-            <a href="<?= base_url(); ?>supplies/send_supplies/<?= $supply['supply_id']; ?>"><button type="button" class="btn btn-success mb-3">Process Order</button></a>
+            <a href="<?= base_url(); ?>transactions/send_transaction_pr/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-success mb-3">Proceed to Cashier</button></a>
             <button type="button" class="btn btn-danger mb-3" data-toggle="modal" data-target="#cancelModal">
-                Cancel Supply Order
+                Cancel Transaction
             </button>
         <?php endif; ?>
-        <a href="<?= base_url(); ?>supplies/print_supplies/<?= $supply['supply_id']; ?>"><button type="button" class="btn btn-secondary mb-3"><i class="fas fa-print"></i> Print</button></a>
     </div>
 </div>
 
-</div>
 
 <!-- Modal -->
 <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelOrderModal" aria-hidden="true">
@@ -79,10 +83,12 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">No, I've changed my mind</button>
-                <a href="<?= base_url(); ?>supplies/cancel_supplies/<?= $supply['supply_id']; ?>"><button type="button" class="btn btn-danger">Yes, cancel it !</button></a>
+                <a href="<?= base_url(); ?>transactions/cancel_transaction_pr/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-danger">Yes, cancel it !</button></a>
             </div>
         </div>
     </div>
+</div>
+
 </div>
 
 <script>
@@ -97,5 +103,6 @@
                 dataType: "json"
             })
         });
+
     })
 </script>

@@ -64,7 +64,9 @@ class Supplies_model extends CI_Model
             'supply_code' => $code
         ];
         $this->db->update('supplies', $data, ['supply_code' => null]);
-        return $this->db->affected_rows();
+        $this->db->affected_rows();
+
+        return $id;
     }
 
     public function deleteSupplies($id)

@@ -37,12 +37,12 @@ class Supplies extends CI_Controller
                 'supplier_id' => $this->supplies_model->getSupplierId($this->input->post('supplier_name')),
                 'supply_status' => 'Draft'
             ];
-            $this->supplies_model->createSupplies($data);
+            $id = $this->supplies_model->createSupplies($data);
             // Generate PO Code
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
             Supply Order added !
           </div>');
-            redirect('supplies');
+            redirect('supplies/detail_supplies/' . $id);
         }
     }
 
@@ -153,6 +153,7 @@ class Supplies extends CI_Controller
         $this->pdfgenerator->generate($html, 'Supply : ' . $supply_code);
     }
 
+    // PDF Preview
     public function pdf_supplies($id)
     {
         $data['supply'] = $this->supplies_model->get_by_employee($id);
