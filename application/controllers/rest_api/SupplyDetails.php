@@ -55,6 +55,30 @@ class SupplyDetails extends RestController
             }
         }
     }
+    
+    public function index_put()
+    {
+        $id = $this->put('supply_detail_id');
+
+        $data = [
+            'product_id' => $this->put('product_id'),
+            'supply_detail_quantity' => $this->put('supply_detail_quantity'),
+            'supply_detail_package' => $this->put('supply_detail_package'),
+            'supply_detail_subtotal' => $this->put('supply_detail_subtotal'),
+        ];
+
+        if ($this->supplies_model->updateDetails($data, $id) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'Supply detail has been updated'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'update supply detail failed'
+            ], 404);
+        }
+    }
 
     public function index_patch()
     {
