@@ -12,12 +12,13 @@ class SupplyDetails extends RestController
 
     public function index_get()
     {
-        $id = $this->get('supply_detail_id');
+        $id = $this->get('supply_id');
+        $det_id = $this->get('supply_detail_id');
 
-        if ($id === null) {
-            $details = $this->supplies_model->getAllDetails();
+        if ($det_id === null) {
+            $details = $this->supplies_model->getAllDetails($id);
         } else {
-            $details = $this->supplies_model->getDetails($id);
+            $details = $this->supplies_model->getDetails($det_id);
         }
 
         if ($details) {
@@ -52,6 +53,30 @@ class SupplyDetails extends RestController
                     'message' => 'id not found'
                 ], 404);
             }
+        }
+    }
+    
+    public function index_put()
+    {
+        $id = $this->put('supply_detail_id');
+
+        $data = [
+            'product_id' => $this->put('product_id'),
+            'supply_detail_quantity' => $this->put('supply_detail_quantity'),
+            'supply_detail_package' => $this->put('supply_detail_package'),
+            'supply_detail_subtotal' => $this->put('supply_detail_subtotal'),
+        ];
+
+        if ($this->supplies_model->updateDetails($data, $id) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'Supply detail has been updated'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'update supply detail failed'
+            ], 404);
         }
     }
 
