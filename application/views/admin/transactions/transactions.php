@@ -24,6 +24,7 @@
                             <th>CS</th>
                             <th>Cashier</th>
                             <th>Status</th>
+                            <th>Sub Total</th>
                             <th>Discount</th>
                             <th>Total</th>
                         </tr>
@@ -41,6 +42,7 @@
                                     <td><?= $c['cs_name'] ?></td>
                                     <td><?= $c['cashier_name'] ?></td>
                                     <td><?= $c['transaction_status'] ?></td>
+                                    <td><?= $c['transaction_subtotal'] ?></td>
                                     <td><?= $c['transaction_discount'] ?></td>
                                     <td><?= $c['transaction_total'] ?></td>
                                 </tr>

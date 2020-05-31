@@ -28,8 +28,10 @@
                                     <td><?= $d['transaction_product_quantity'] ?></td>
                                     <td><?= $d['transaction_product_subtotal'] ?></td>
                                     <td>
-                                        <button type="button" class="btn btn-circle btn-secondary" onclick="window.location.href = '<?= base_url(); ?>transactions/edit_product_details/<?= $d['transaction_product_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
-                                        <button type="button" class="btn btn-circle btn-danger" onclick="window.location.href = '<?= base_url(); ?>transactions/delete_product_details/<?= $d['transaction_product_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <?php if ($transaction['transaction_status'] === 'Draft') : ?>
+                                            <button type="button" class="btn btn-circle btn-secondary" onclick="window.location.href = '<?= base_url(); ?>transactions/edit_product_details/<?= $d['transaction_product_id']; ?>';"><i class="fas fa-pencil-alt"></i></button>
+                                            <button type="button" class="btn btn-circle btn-danger" onclick="window.location.href = '<?= base_url(); ?>transactions/delete_product_details/<?= $d['transaction_product_id']; ?>';"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <?php endif; ?>
                                     </td>
                                     <?php $subtotal += $d['transaction_product_subtotal']; ?>
                                 </tr>
@@ -45,7 +47,7 @@
                     <tfoot>
                         <tr>
                             <td colspan="2"><b>Total</b></td>
-                            <td><b><?= $subtotal ?></b></td>
+                            <td><b><?= $transaction['transaction_subtotal'] ?></b></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -54,13 +56,17 @@
     </div>
 
     <div class="input-group-btn my-3">
-        <?php if ($transaction['transaction_status'] === 'Draft') : ?>
+        <?php if ($transaction['transaction_status'] === 'Draft' && ($this->session->userdata('role_id') === '2')) : ?>
             <a href="<?= base_url(); ?>transactions/add_product_details/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-primary mb-3">Add Product</button></a>
             <!-- Button trigger modal -->
             <a href="<?= base_url(); ?>transactions/send_transaction_pr/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-success mb-3">Proceed to Cashier</button></a>
             <button type="button" class="btn btn-danger mb-3" data-toggle="modal" data-target="#cancelModal">
                 Cancel Transaction
             </button>
+        <?php endif; ?>
+        <?php if (($transaction['transaction_status'] === 'Not Yet') && ($this->session->userdata('role_id') === '3')) : ?>
+            <a href="<?= base_url(); ?>transactions/add_discount/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-primary mb-3">Add Discount</button></a>
+            <a href="<?= base_url(); ?>transactions/send_payment/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-success mb-3">Finish Payment</button></a>
         <?php endif; ?>
     </div>
 </div>

@@ -2,23 +2,23 @@
 
 use chriskacerguis\RestServer\RestController;
 
-class SupplyDetails extends RestController
+class TrDetails_pr extends RestController
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Supplies_model', 'supplies_model');
+        $this->load->model('Transactions_model', 'transactions_model');
     }
 
     public function index_get()
     {
-        $id = $this->get('supply_id');
-        $det_id = $this->get('supply_detail_id');
+        $id = $this->get('transaction_id');
+        $det_id = $this->get('transaction_product_id');
 
         if ($det_id === null) {
-            $details = $this->supplies_model->getAllDetails($id);
+            $details = $this->transactions_model->getAllProductDetails($id);
         } else {
-            $details = $this->supplies_model->getDetails($det_id);
+            $details = $this->transactions_model->getProductDetails($det_id);
         }
 
         if ($details) {
@@ -33,7 +33,7 @@ class SupplyDetails extends RestController
 
     public function index_delete()
     {
-        $id = $this->delete('supply_detail_id');
+        $id = $this->delete('transaction_product_id');
 
         if ($id === null) {
             $this->response([
@@ -41,10 +41,10 @@ class SupplyDetails extends RestController
                 'message' => 'Provide an ID !'
             ], 404);
         } else {
-            if ($this->supplies_model->deleteDetails($id) > 0) {
+            if ($this->transactions_model->deleteProductDetails($id) > 0) {
                 $this->response([
                     'status' => true,
-                    'supplier_id' => $id,
+                    'transaction_product_id' => $id,
                     'message' => 'deleted'
                 ], 200);
             } else {
@@ -58,18 +58,18 @@ class SupplyDetails extends RestController
 
     public function index_patch()
     {
-        $id = $this->patch('supply_detail_id');
+        $id = $this->patch('transaction_product_id');
 
-        if ($this->supplies_model->deleteDetails($id) > 0) {
+        if ($this->transactions_model->deleteProductDetails($id) > 0) {
             $this->response([
                 'status' => true,
-                'supplier_id' => $id,
+                'transaction_product_id' => $id,
                 'message' => 'deleted'
             ], 200);
         } else {
             $this->response([
                 'status' => false,
-                'supplier_id' => $id,
+                'transaction-product_id' => $id,
                 'message' => 'id not found'
             ], 404);
         }
@@ -78,46 +78,45 @@ class SupplyDetails extends RestController
     public function index_post()
     {
         $data = [
-            'supply_id' => $this->post('supply_id'),
+            'transaction_id' => $this->post('transaction_id'),
             'product_id' => $this->post('product_id'),
-            'supply_detail_quantity' => $this->post('supply_detail_quantity'),
-            'supply_detail_package' => $this->post('supply_detail_package'),
-            'supply_detail_subtotal' => $this->post('supply_detail_subtotal'),
+            'transaction_product_quantity' => $this->post('transaction_product_quantity'),
+            'transaction_product_subtotal' => $this->post('transaction_product_subtotal')
         ];
 
-        if ($this->supplies_model->createDetails($data) > 0) {
+        if ($this->transactions_model->createProductDetails($data) > 0) {
             $this->response([
                 'status' => true,
-                'message' => 'supply order has been created'
+                'message' => 'product transaction detail has been created'
             ], 201);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'create supply failed'
+                'message' => 'product transaction detail failed'
             ], 404);
         }
     }
 
     public function index_put()
     {
-        $id = $this->put('supply_detail_id');
+        $id = $this->put('transaction_product_id');
 
         $data = [
+            'transaction_id' => $this->put('transaction_id'),
             'product_id' => $this->put('product_id'),
-            'supply_detail_quantity' => $this->put('supply_detail_quantity'),
-            'supply_detail_package' => $this->put('supply_detail_package'),
-            'supply_detail_subtotal' => $this->put('supply_detail_subtotal'),
+            'transaction_product_quantity' => $this->put('transaction_product_quantity'),
+            'transaction_product_subtotal' => $this->put('transaction_product_subtotal')
         ];
 
-        if ($this->supplies_model->updateDetails($data, $id) > 0) {
+        if ($this->transactions_model->updateProductDetails($data, $id) > 0) {
             $this->response([
                 'status' => true,
-                'message' => 'Supply detail has been updated'
+                'message' => 'product transaction detail has been updated'
             ], 200);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'update supply detail failed'
+                'message' => 'update product transaction detail failed'
             ], 404);
         }
     }
