@@ -129,9 +129,11 @@ class Transactions extends CI_Controller
         $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
         $data['title'] = 'Add Service Transaction';
         $data['transaction'] = $this->transactions_model->getTransactions($id);
-        $data['service'] = $this->transactions_model->getServices();
+        $customer_id = $data['transaction']['customer_id'];
+        $data['services'] = $this->transactions_model->getServices();
+        $data['animals'] = $this->transactions_model->getAnimals($customer_id);
 
-        $this->form_validation->set_rules('transaction_product_quantity', 'Quantity', 'required|numeric|callback_qty_check');
+        $this->form_validation->set_rules('transaction_service_quantity', 'Quantity', 'required|numeric');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('templates/admin_header', $data);
@@ -140,19 +142,20 @@ class Transactions extends CI_Controller
         } else {
             $data = [
                 'transaction_id' => $id,
-                'product_id' => $this->transactions_model->getProductId($this->input->post('product_name')),
-                'transaction_product_quantity' => $this->input->post('transaction_product_quantity'),
-                'transaction_product_subtotal' => $this->transactions_model->countSubtotal($this->input->post('product_name'), $this->input->post('transaction_product_quantity'))
+                'service_id' => $this->transactions_model->getServiceId($this->input->post('service_name')),
+                'animal_id' => $this->transactions_model->getAnimalId($this->input->post('animal_name')),
+                'transaction_service_progress' => 'On Progress',
+                'transaction_service_quantity' => $this->input->post('transaction_service_quantity'),
+                'transaction_service_subtotal' => $this->transactions_model->countSubtotal_sr($this->input->post('service_name'), $this->input->post('transaction_service_quantity'))
             ];
             // Input data Product Detail
-            $this->transactions_model->createProductDetails($data);
-            // Update service stock
-            $this->transactions_model->updateProduct($this->transactions_model->getProductId($this->input->post('product_name')), $this->input->post('transaction_product_quantity'));
-            // Generate PO Code
+            $this->transactions_model->createServiceDetails($data);
+            // Count transaction subtotal
+            $this->transactions_model->countTransactionSubTotal_sr($id);
             $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
-            Product Detail added !
+            Service Detail added !
           </div>');
-            redirect('transactions/detail_transaction_pr/' . $id);
+            redirect('transactions/detail_transaction_sr/' . $id);
         }
     }
 
@@ -240,6 +243,57 @@ class Transactions extends CI_Controller
         }
     }
 
+    public function edit_service_details($id)
+    {
+        $data['user'] = $this->db->get_where('employees', ['username' => $this->session->userdata('username')])->row_array();
+        $data['detail'] = $this->transactions_model->getServiceDetails($id);
+        $data['transaction'] = $this->transactions_model->getTransactions($data['detail']['transaction_id']);
+        $data['title'] = 'Edit Service : ' . $data['detail']['service_name'];;
+        $data['services'] = $this->transactions_model->getServices();
+
+        $transaction_id = $data['detail']['transaction_id'];
+        $service_name = $data['detail']['service_name'];
+
+        $this->form_validation->set_rules('transaction_service_quantity', 'Quantity', 'required|numeric');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('templates/admin_header', $data);
+            $this->load->view('admin/transactions/edit_det_service', $data);
+            $this->load->view('templates/admin_footer');
+        } else {
+            $data = [
+                'transaction_service_quantity' => $this->input->post('transaction_service_quantity'),
+                'transaction_service_subtotal' => $this->transactions_model->countSubtotal_sr($service_name, $this->input->post('transaction_service_quantity'))
+            ];
+            $this->transactions_model->updateServiceDetails($data, $id);
+            // Count transaction subtotal
+            $this->transactions_model->countTransactionSubTotal_sr($transaction_id);
+            $this->session->set_flashdata('flash', '<div class="alert alert-success" role="alert">
+            Service detail updated !
+          </div>');
+            redirect('transactions/detail_transaction_sr/' . $transaction_id);
+        }
+    }
+
+    public function finish_service_progress($id)
+    {
+        $data['detail'] = $this->transactions_model->getServiceDetails($id);
+        $progress = $data['detail']['transaction_service_progress'];
+        $transaction_id = $data['detail']['transaction_id'];
+
+        if ($progress === 'On Progress') {
+            $data = [
+                'transaction_service_progress' => 'Finished'
+            ];
+        } else {
+            $data = [
+                'transaction_service_progress' => 'On Progress'
+            ];
+        }
+        $this->transactions_model->updateServiceDetails($data, $id);
+        redirect('transactions/detail_transaction_sr/' . $transaction_id);
+    }
+
     public function delete_product_details($id)
     {
         $data['detail'] = $this->transactions_model->getProductDetails($id);
@@ -250,13 +304,28 @@ class Transactions extends CI_Controller
         // Revert product stock
         $this->transactions_model->revertProduct($product_id, $detail_qty);
         // Count transaction subtotal
-        $this->transactions_model->countTransactionSubTotal_pr($transaction_id);
         $this->transactions_model->deleteProductDetails($id);
+        $this->transactions_model->countTransactionSubTotal_pr($transaction_id);
         $this->session->set_flashdata('flash', '<div class="alert alert-danger" role="alert">
             Product detail deleted !
           </div>');
 
         redirect('transactions/detail_transaction_pr/' . $transaction_id);
+    }
+
+    public function delete_service_details($id)
+    {
+        $data['detail'] = $this->transactions_model->getServiceDetails($id);
+        $transaction_id = $data['detail']['transaction_id'];
+
+        // Count transaction subtotal
+        $this->transactions_model->deleteServiceDetails($id);
+        $this->transactions_model->countTransactionSubTotal_sr($transaction_id);
+        $this->session->set_flashdata('flash', '<div class="alert alert-danger" role="alert">
+            Service detail deleted !
+          </div>');
+
+        redirect('transactions/detail_transaction_sr/' . $transaction_id);
     }
 
     public function detail_transaction_pr($id)
@@ -274,6 +343,7 @@ class Transactions extends CI_Controller
     {
         $data['transaction'] = $this->transactions_model->getTransactions($id);
         $data['details'] = $this->transactions_model->getAllServiceDetails($id);
+
         $data['title'] = $data['transaction']['transaction_code'] . ' | ' . $data['transaction']['customer_name'] . ' :: Kouvee';
 
         $this->load->view('templates/admin_header', $data);
@@ -293,13 +363,38 @@ class Transactions extends CI_Controller
         redirect('transactions');
     }
 
+    public function send_transaction_sr($id)
+    {
+        $data['transaction'] = $this->transactions_model->getTransactions($id);
+        $data['details'] = $this->transactions_model->getAllServiceDetails($id);
+
+        $transaction_id = $data['transaction']['transaction_id'];
+        $dets = $data['details'];
+        foreach ($dets as $d) {
+            if ($d['transaction_service_progress'] != 'Finished') {
+                $this->session->set_flashdata('flash', '<div class="alert alert-danger" role="alert">
+            Finish service progress first !
+          </div>');
+
+                redirect('transactions/detail_transaction_sr/' . $transaction_id);
+            }
+        }
+
+        $tr_status = $data['transaction']['transaction_status'];
+        if ($tr_status === 'Draft') {
+            $this->transactions_model->proceedTransaction($id);
+            $this->transactions_model->countTotal($id);
+        }
+        redirect('transactions');
+    }
+
     public function send_payment($id)
     {
         $data['transaction'] = $this->transactions_model->getTransactions($id);
         $transaction_code = $data['transaction']['transaction_code'];
         $tr_date = $data['transaction']['UPDATED_AT'];
 
-        $data['print_date'] = date("d-M-Y H:i", strtotime($tr_date));  
+        $data['print_date'] = date("d-M-Y H:i", strtotime($tr_date));
 
         // Details get
         if (substr($transaction_code, 0, 2) === 'PR') {
@@ -310,7 +405,7 @@ class Transactions extends CI_Controller
 
         // Set to Paid
         $tr_status = $data['transaction']['transaction_status'];
-        if($tr_status === 'Not Yet') {
+        if ($tr_status === 'Not Yet') {
             $this->transactions_model->proceedPayment($id);
         }
 

@@ -2,10 +2,12 @@
     <?= $this->session->flashdata('flash'); ?>
     <h1 class="h3 mb-2 text-gray-800">Transaction Code : <?= $transaction['transaction_code']; ?></h1>
     <h5 class="h3 mb-2 text-gray-600">Customer : <?= $transaction['customer_name']; ?></h5>
-    <?php if ($transaction['transaction_status'] === 'Completed') : ?>
+    <?php if ($transaction['transaction_status'] === 'Paid') : ?>
         <h5>Status : <span class="badge badge-success mb-3"><?= $transaction['transaction_status']; ?></span></h5>
-    <?php else : ?>
+    <?php elseif ($transaction['transaction_status'] === 'Not Yet') : ?>
         <h5>Status : <span class="badge badge-warning mb-3"><?= $transaction['transaction_status']; ?></span></h5>
+    <?php else : ?>
+        <h5>Status : <span class="badge badge-secondary mb-3"><?= $transaction['transaction_status']; ?></span></h5>
     <?php endif; ?>
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -96,19 +98,3 @@
 </div>
 
 </div>
-
-<script>
-    $(document).ready(function() {
-
-        $('#detail_form').on('submit', function(event) {
-            event.preventDefault();
-            $.ajax({
-                url: "<?= base_url('supplies/add_details'); ?>",
-                method: "POST",
-                data: $(this).serialize(),
-                dataType: "json"
-            })
-        });
-
-    })
-</script>

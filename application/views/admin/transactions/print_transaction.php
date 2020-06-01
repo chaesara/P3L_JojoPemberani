@@ -43,7 +43,11 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Product Name</th>
+                        <?php if (substr($transaction['transaction_code'], 0, 2) === 'PR') : ?>
+                            <th>Product Name</th>
+                        <?php else : ?>
+                            <th>Service Name</th>
+                        <?php endif; ?>
                         <th>Price</th>
                         <th>Qty</th>
                         <th>Total Price</th>
@@ -54,10 +58,17 @@
                     foreach ($details as $d) : ?>
                         <tr>
                             <td><?= $i++ ?></td>
-                            <td><?= $d['product_name'] ?></td>
-                            <td><?= $d['product_price'] ?></td>
-                            <td><?= $d['transaction_product_quantity'] ?></td>
-                            <td><?= $d['transaction_product_subtotal'] ?></td>
+                            <?php if (substr($transaction['transaction_code'], 0, 2) === 'PR') : ?>
+                                <td><?= $d['service_name'] ?></td>
+                                <td><?= $d['product_price'] ?></td>
+                                <td><?= $d['transaction_product_quantity'] ?></td>
+                                <td><?= $d['transaction_product_subtotal'] ?></td>
+                            <?php else : ?>
+                                <td><?= $d['service_name'] ?></td>
+                                <td><?= $d['service_price'] ?></td>
+                                <td><?= $d['transaction_service_quantity'] ?></td>
+                                <td><?= $d['transaction_service_subtotal'] ?></td>
+                            <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
@@ -73,8 +84,8 @@
         <div class="row" style="text-align: end; text-align: right; font-weight: bold;">
             <p>
                 Sub Total : Rp <?= $transaction['transaction_subtotal']; ?> <br>
-                Discount  : Rp <?= $transaction['transaction_discount']; ?> <br>
-                Total     : Rp <?= $transaction['transaction_total']; ?> <br>
+                Discount : Rp <?= $transaction['transaction_discount']; ?> <br>
+                Total : Rp <?= $transaction['transaction_total']; ?> <br>
             </p>
         </div>
 

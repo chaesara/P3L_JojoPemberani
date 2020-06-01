@@ -11,6 +11,7 @@ class Transactions_model extends CI_Model
             $this->db->join('customers', 'customer_id');
             $this->db->from('transactions');
             $this->db->where('transactions.DELETED_AT', NULL);
+            $this->db->order_by('transactions.CREATED_AT', 'DESC');
 
             return $this->db->get()->result_array();
         } else {
@@ -32,6 +33,7 @@ class Transactions_model extends CI_Model
         $this->db->from('transaction_product');
         $this->db->where('transaction_id', $id);
         $this->db->where('transaction_product.DELETED_AT', NULL);
+        $this->db->order_by('transaction_product.CREATED_AT', 'DESC');
 
         return $this->db->get()->result_array();
     }
@@ -43,6 +45,7 @@ class Transactions_model extends CI_Model
         $this->db->from('transaction_service');
         $this->db->where('transaction_id', $id);
         $this->db->where('transaction_service.DELETED_AT', NULL);
+        $this->db->order_by('transaction_service.CREATED_AT', 'DESC');
 
         return $this->db->get()->result_array();
     }
@@ -84,7 +87,12 @@ class Transactions_model extends CI_Model
 
     public function getServices()
     {
-        return $this->db->get_where('services', ['deleted_at' => null])->result_array();
+        $this->db->select('services.*, sizes.size_name');
+        $this->db->from('services');
+        $this->db->join('sizes', 'size_id');
+        $this->db->where('services.DELETED_AT', null);
+
+        return $this->db->get()->result_array();
     }
 
     public function getServiceId($service_name)
@@ -112,6 +120,26 @@ class Transactions_model extends CI_Model
         $query = $this->db->get();
 
         return $query->row()->customer_id;
+    }
+
+    public function getAnimals($customer_id)
+    {
+        $this->db->select('animal_name');
+        $this->db->from('animals');
+        $this->db->where('customer_id', $customer_id);
+
+        return $this->db->get()->result_array();
+    }
+
+    public function getAnimalId($animal_name)
+    {
+        $this->db->select('animals.animal_id');
+        $this->db->from('animals');
+        $this->db->where('animal_name', $animal_name);
+
+        $query = $this->db->get();
+
+        return $query->row()->animal_id;
     }
 
     public function createProductTransactions($data)
@@ -280,6 +308,17 @@ class Transactions_model extends CI_Model
         return $price * $quantity;
     }
 
+    public function countSubtotal_sr($service_name, $quantity)
+    {
+        $this->db->select('services.service_price');
+        $this->db->from('services');
+        $this->db->where('service_name', $service_name);
+
+        $price = $this->db->get()->row()->service_price;
+
+        return $price * $quantity;
+    }
+
     public function countTransactionSubTotal_pr($id)
     {
         $subtotal = 0;
@@ -288,6 +327,22 @@ class Transactions_model extends CI_Model
 
         foreach ($details as $d) {
             $subtotal += $d['transaction_product_subtotal'];
+        };
+
+        $data = [
+            'transaction_subtotal' => $subtotal
+        ];
+        $this->db->update('transactions', $data, ['transaction_id' => $id]);
+    }
+
+    public function countTransactionSubTotal_sr($id)
+    {
+        $subtotal = 0;
+
+        $details = $this->transactions_model->getAllServiceDetails($id);
+
+        foreach ($details as $d) {
+            $subtotal += $d['transaction_service_subtotal'];
         };
 
         $data = [
@@ -324,7 +379,7 @@ class Transactions_model extends CI_Model
         $status = [
             'transaction_status' => 'Paid',
             'transaction_date' => $now,
-            'employee_id_cashier' => $this->session->userdata('employee_id') 
+            'employee_id_cashier' => $this->session->userdata('employee_id')
         ];
 
         return $this->db->update('transactions', $status, ['transaction_id' => $id]);
