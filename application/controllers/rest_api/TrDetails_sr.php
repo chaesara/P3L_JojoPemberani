@@ -82,7 +82,8 @@ class TrDetails_sr extends RestController
             'service_id' => $this->post('service_id'),
             'animal_id' => $this->post('animal_id'),
             'transaction_service_quantity' => $this->post('transaction_service_quantity'),
-            'transaction_service_subtotal' => $this->post('transaction_service_subtotal')
+            'transaction_service_subtotal' => $this->post('transaction_service_subtotal'),
+            'transaction_service_progress' => 'On Progress'
         ];
 
         if ($this->transactions_model->createServiceDetails($data) > 0) {

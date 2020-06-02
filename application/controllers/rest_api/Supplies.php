@@ -112,21 +112,4 @@ class Supplies extends RestController
             ], 404);
         }
     }
-
-    public function index_put()
-    {
-        $id = $this->put('supply_id');
-
-        if ($this->supplies_model->sendSupplies($id) > 0) {
-            $this->response([
-                'status' => true,
-                'message' => 'supply order has been sent'
-            ], 200);
-        } else {
-            $this->response([
-                'status' => false,
-                'message' => 'send supply order failed'
-            ], 404);
-        }
-    }
 }

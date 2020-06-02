@@ -332,7 +332,7 @@ class Transactions_model extends CI_Model
         $data = [
             'transaction_subtotal' => $subtotal
         ];
-        $this->db->update('transactions', $data, ['transaction_id' => $id]);
+        return $this->db->update('transactions', $data, ['transaction_id' => $id]);
     }
 
     public function countTransactionSubTotal_sr($id)
@@ -348,7 +348,7 @@ class Transactions_model extends CI_Model
         $data = [
             'transaction_subtotal' => $subtotal
         ];
-        $this->db->update('transactions', $data, ['transaction_id' => $id]);
+        return $this->db->update('transactions', $data, ['transaction_id' => $id]);
     }
 
     public function countTotal($id)
@@ -359,7 +359,7 @@ class Transactions_model extends CI_Model
         $data = [
             'transaction_total' => $total
         ];
-        $this->db->update('transactions', $data, ['transaction_id' => $id]);
+        return $this->db->update('transactions', $data, ['transaction_id' => $id]);
     }
 
     public function proceedTransaction($id)
