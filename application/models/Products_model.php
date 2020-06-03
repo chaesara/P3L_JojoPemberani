@@ -33,8 +33,7 @@ class Products_model extends CI_Model
     public function getProductsSortBy($by = 'default')
     {
         if ($by === 'default') {
-            $this->db->select('products.*, employees.employee_name');
-            $this->db->join('employees', 'employee_id');
+            $this->db->select('products.*');
             $this->db->from('products');
             $this->db->where('products.DELETED_AT', NULL);
             $this->db->order_by('products.CREATED_AT', 'DESC');
@@ -43,41 +42,37 @@ class Products_model extends CI_Model
 
             return $query->result_array();
         } else if ($by === 'fewStock') {
-            $this->db->select('products.*, employees.employee_name');
-            $this->db->join('employees', 'employee_id');
+            $this->db->select('products.*');
             $this->db->from('products');
             $this->db->where('products.DELETED_AT', NULL);
-            $this->db->order_by('products.product_quantity', 'ASC');
+            $this->db->order_by('CAST(products.product_quantity AS FLOAT)', 'ASC');
 
             $query = $this->db->get();
 
             return $query->result_array();
         } else if ($by === 'manyStock') {
-            $this->db->select('products.*, employees.employee_name');
-            $this->db->join('employees', 'employee_id');
+            $this->db->select('products.*');
             $this->db->from('products');
             $this->db->where('products.DELETED_AT', NULL);
-            $this->db->order_by('products.product_quantity', 'DESC');
+            $this->db->order_by('CAST(products.product_quantity AS FLOAT)', 'DESC');
 
             $query = $this->db->get();
 
             return $query->result_array();
         } else if ($by === 'lowPrice') {
-            $this->db->select('products.*, employees.employee_name');
-            $this->db->join('employees', 'employee_id');
+            $this->db->select('products.*');
             $this->db->from('products');
             $this->db->where('products.DELETED_AT', NULL);
-            $this->db->order_by('products.product_price', 'ASC');
+            $this->db->order_by('CAST(products.product_price AS FLOAT)', 'ASC');
 
             $query = $this->db->get();
 
             return $query->result_array();
         } else if ($by === 'highPrice') {
-            $this->db->select('products.*, employees.employee_name');
-            $this->db->join('employees', 'employee_id');
+            $this->db->select('products.*');
             $this->db->from('products');
             $this->db->where('products.DELETED_AT', NULL);
-            $this->db->order_by('products.product_price', 'DESC');
+            $this->db->order_by('CAST(products.product_price AS FLOAT)', 'DESC');
 
             $query = $this->db->get();
 

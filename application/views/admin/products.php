@@ -39,8 +39,9 @@
                     <tbody>
                         <?php foreach ($products as $p) : ?>
                             <tr>
-                                <td>
-                                    <?= $p['product_name'] ?>
+                                <td><a class="list-group-item-action" href="<?= base_url(); ?>products/edit_products/<?= $p['product_id'] ?>">
+                                        <?= $p['product_name'] ?>
+                                    </a>
                                 </td>
                                 <td><img style="max-height:100px;
                     max-width:100px;
