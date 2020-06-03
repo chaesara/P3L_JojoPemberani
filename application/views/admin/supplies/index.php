@@ -34,7 +34,7 @@
                                         <td class="text-secondary"><?= $c['supply_status'] ?></td>
                                     <?php endif; ?>
                                     <?php if ($c['supply_status'] === 'Completed') : ?>
-                                        <td class="text-success"><?= $c['supply_status'] ?></td>
+                                        <td class="text-success"><?= $c['supply_status'] ?> <br> <?= $c['supply_date'] ?></td>
                                     <?php endif; ?>
                                     <?php if ($c['supply_status'] === 'Deleted') : ?>
                                         <td class="text-warning"><?= $c['supply_status'] ?></td>

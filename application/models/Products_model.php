@@ -23,10 +23,66 @@ class Products_model extends CI_Model
         $this->db->join('employees', 'employee_id');
         $this->db->from('products');
         $this->db->where('products.DELETED_AT', NULL);
+        $this->db->order_by('products.CREATED_AT', 'DESC');
 
         $query = $this->db->get();
 
         return $query->result_array();
+    }
+
+    public function getProductsSortBy($by = 'default')
+    {
+        if ($by === 'default') {
+            $this->db->select('products.*, employees.employee_name');
+            $this->db->join('employees', 'employee_id');
+            $this->db->from('products');
+            $this->db->where('products.DELETED_AT', NULL);
+            $this->db->order_by('products.CREATED_AT', 'DESC');
+
+            $query = $this->db->get();
+
+            return $query->result_array();
+        } else if ($by === 'fewStock') {
+            $this->db->select('products.*, employees.employee_name');
+            $this->db->join('employees', 'employee_id');
+            $this->db->from('products');
+            $this->db->where('products.DELETED_AT', NULL);
+            $this->db->order_by('products.product_quantity', 'ASC');
+
+            $query = $this->db->get();
+
+            return $query->result_array();
+        } else if ($by === 'manyStock') {
+            $this->db->select('products.*, employees.employee_name');
+            $this->db->join('employees', 'employee_id');
+            $this->db->from('products');
+            $this->db->where('products.DELETED_AT', NULL);
+            $this->db->order_by('products.product_quantity', 'DESC');
+
+            $query = $this->db->get();
+
+            return $query->result_array();
+        } else if ($by === 'lowPrice') {
+            $this->db->select('products.*, employees.employee_name');
+            $this->db->join('employees', 'employee_id');
+            $this->db->from('products');
+            $this->db->where('products.DELETED_AT', NULL);
+            $this->db->order_by('products.product_price', 'ASC');
+
+            $query = $this->db->get();
+
+            return $query->result_array();
+        } else if ($by === 'highPrice') {
+            $this->db->select('products.*, employees.employee_name');
+            $this->db->join('employees', 'employee_id');
+            $this->db->from('products');
+            $this->db->where('products.DELETED_AT', NULL);
+            $this->db->order_by('products.product_price', 'DESC');
+
+            $query = $this->db->get();
+
+            return $query->result_array();
+        }
     }
 
     // Delete - insert now timestamp to deleted_at
@@ -39,7 +95,7 @@ class Products_model extends CI_Model
         $pathfile = './assets/products/' . $image;
         unlink($pathfile);
         // End here
-        
+
         date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
         $now = date('Y-m-d H:i:s');
 

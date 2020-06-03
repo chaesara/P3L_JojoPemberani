@@ -23,6 +23,7 @@ class Sizes_model extends CI_Model
         $this->db->join('employees', 'employee_id');
         $this->db->from('sizes');
         $this->db->where('sizes.DELETED_AT', NULL);
+        $this->db->order_by('sizes.CREATED_AT', 'DESC');
 
         $query = $this->db->get();
 

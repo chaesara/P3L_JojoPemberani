@@ -59,6 +59,8 @@ class Supplies extends RestController
     {
         $id = $this->put('supply_id');
 
+        $this->supplies_model->print_supplies($id);
+
         if ($this->supplies_model->sendSupplies($id) > 0) {
             $this->response([
                 'status' => true,

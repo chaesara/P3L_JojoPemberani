@@ -25,6 +25,7 @@ class Animals_model extends CI_Model
         $this->db->join('animal_types', 'type_id');
         $this->db->from('animals');
         $this->db->where('animals.DELETED_AT', NULL);
+        $this->db->order_by('animals.CREATED_AT', 'DESC');
 
         $query = $this->db->get();
 

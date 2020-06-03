@@ -23,6 +23,7 @@ class Suppliers_model extends CI_Model
         $this->db->join('employees', 'employee_id');
         $this->db->from('suppliers');
         $this->db->where('suppliers.DELETED_AT', NULL);
+        $this->db->order_by('suppliers.CREATED_AT', 'DESC');
 
         $query = $this->db->get();
 

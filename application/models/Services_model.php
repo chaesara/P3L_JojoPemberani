@@ -40,6 +40,7 @@ class Services_model extends CI_Model
         $this->db->join('sizes', 'size_id');
         $this->db->from('services');
         $this->db->where('services.DELETED_AT', NULL);
+        $this->db->order_by('services.CREATED_AT', 'DESC');
 
         $query = $this->db->get();
 

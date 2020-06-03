@@ -62,14 +62,14 @@
             <a href="<?= base_url(); ?>transactions/add_product_details/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-primary mb-3">Add Product</button></a>
             <!-- Button trigger modal -->
             <a href="<?= base_url(); ?>transactions/send_transaction_pr/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-success mb-3">Proceed to Cashier</button></a>
-            <button type="button" class="btn btn-danger mb-3" data-toggle="modal" data-target="#cancelModal">
-                Cancel Transaction
-            </button>
         <?php endif; ?>
         <?php if (($transaction['transaction_status'] === 'Not Yet') && ($this->session->userdata('role_id') === '3')) : ?>
             <a href="<?= base_url(); ?>transactions/add_discount/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-primary mb-3">Add Discount</button></a>
             <a href="<?= base_url(); ?>transactions/send_payment/<?= $transaction['transaction_id']; ?>"><button type="button" class="btn btn-success mb-3">Finish Payment</button></a>
         <?php endif; ?>
+        <button type="button" class="btn btn-danger mb-3" data-toggle="modal" data-target="#cancelModal">
+            Cancel Transaction
+        </button>
     </div>
 </div>
 

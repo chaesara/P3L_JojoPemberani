@@ -16,6 +16,7 @@ class Supplies_model extends CI_Model
             $this->db->join('suppliers', 'supplier_id');
             $this->db->from('supplies');
             $this->db->where('supplies.DELETED_AT', NULL);
+            $this->db->order_by('supplies.CREATED_AT', 'DESC');
 
             return $this->db->get()->result_array();
         } else {
@@ -169,10 +170,30 @@ class Supplies_model extends CI_Model
 
     public function sendSupplies($id)
     {
+        date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
+        $now = date('Y-m-d');
+
         $status = [
-            'supply_status' => 'Completed'
+            'supply_status' => 'Completed',
+            'supply_date' => $now
         ];
 
         return $this->db->update('supplies', $status, ['supply_id' => $id]);
+    }
+
+    public function print_supplies($id)
+    {
+        $data['supply'] = $this->supplies_model->get_by_employee($id);
+        $data['details'] = $this->supplies_model->getAllDetails($id);
+
+        date_default_timezone_set('Asia/Jakarta'); # add your city to set local time zone
+        $data['print_date'] = date('d F Y');
+
+        $this->load->library('pdfgenerator');
+
+        $supply_code = $data['supply']['supply_code'];
+        $html = $this->load->view('admin/supplies/print_supply', $data, true);
+
+        $this->pdfgenerator->generate($html, 'Supply : ' . $supply_code);
     }
 }

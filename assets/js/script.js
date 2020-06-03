@@ -21,6 +21,12 @@ function search() {
 	}
 }
 
+$(".card").hover(
+	function () {
+		$(this).toggleClass('shadow-lg');
+	}
+);
+
 function readURL(input) {
 	if (input.files && input.files[0]) {
 		var reader = new FileReader();

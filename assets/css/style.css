@@ -153,3 +153,44 @@ header .overlay {
 [data-slide="prev"] {
 	margin-right: 10px;
 }
+
+/* STYLE PRODUCTS MENU */
+.card-custom {
+	max-width: 248px;
+}
+
+
+.bottom-left {
+	position: absolute;
+	bottom: 8px;
+	left: 16px;
+}
+
+/* Top left text */
+.top-left {
+	position: absolute;
+	top: 8px;
+	left: 16px;
+}
+
+/* Top right text */
+.top-right {
+	position: absolute;
+	top: 8px;
+	right: 16px;
+}
+
+/* Bottom right text */
+.bottom-right {
+	position: absolute;
+	bottom: 8px;
+	right: 16px;
+}
+
+/* Centered text */
+.centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}

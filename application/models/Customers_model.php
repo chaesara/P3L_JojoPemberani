@@ -23,6 +23,7 @@ class Customers_model extends CI_Model
         $this->db->join('employees', 'employee_id');
         $this->db->from('customers');
         $this->db->where('customers.DELETED_AT', NULL);
+        $this->db->order_by('customers.CREATED_AT', 'DESC');
 
         $query = $this->db->get();
 

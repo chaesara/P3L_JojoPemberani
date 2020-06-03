@@ -16,11 +16,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/style.css">
 
 
 </head>
+
 
 <body id="page-top">
 
@@ -39,7 +40,7 @@
                         <a class="nav-link" href=#>Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=#>Products</a>
+                        <a class="nav-link" href=<?= base_url('main/menu_products'); ?>>Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Services</a>

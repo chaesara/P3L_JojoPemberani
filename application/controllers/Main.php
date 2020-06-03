@@ -14,10 +14,10 @@ class Main extends CI_Controller
         $data['title'] = 'Kouvee Pet Shop';
     }
 
-    public function menu_products()
+    public function menu_products($by = 'default')
     {
         $data['title'] = 'Kouvee :: Products';
-        $data['products'] = $this->products_model->get_by_employee();
+        $data['products'] = $this->products_model->getProductsSortBy($by);
 
         $this->load->view('templates/header', $data);
         $this->load->view('main/products', $data);

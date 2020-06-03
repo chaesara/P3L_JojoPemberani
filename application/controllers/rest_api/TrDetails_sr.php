@@ -108,7 +108,8 @@ class TrDetails_sr extends RestController
             'product_id' => $this->put('product_id'),
             'animal_id' => $this->put('animal_id'),
             'transaction_service_quantity' => $this->put('transaction_service_quantity'),
-            'transaction_service_subtotal' => $this->put('transaction_service_subtotal')
+            'transaction_service_subtotal' => $this->put('transaction_service_subtotal'),
+            'transaction_service_progress' => $this->put('transaction_service_progress')
         ];
 
         if ($this->transactions_model->updateServiceDetails($data, $id) > 0) {

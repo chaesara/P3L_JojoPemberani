@@ -5,9 +5,10 @@
     <?= $this->session->flashdata('flash'); ?>
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Transactions List</h1>
-    <a href="<?= base_url('transactions/add_product_transactions'); ?>"><button type="button" class="btn btn-primary mb-3">+ Product Transaction</button></a>
-    <a href="<?= base_url('transactions/add_service_transactions'); ?>"><button type="button" class="btn btn-primary mb-3">+ Service Transaction</button></a>
-
+    <?php if (($this->session->userdata('role_id') === '2')) : ?>
+        <a href="<?= base_url('transactions/add_product_transactions'); ?>"><button type="button" class="btn btn-primary mb-3">+ Product Transaction</button></a>
+        <a href="<?= base_url('transactions/add_service_transactions'); ?>"><button type="button" class="btn btn-primary mb-3">+ Service Transaction</button></a>
+    <?php endif; ?>
     <div class="input-group mt-3 mb-3">
         <input type="text" class="form-control" id="searchInput" onkeyup="search()" placeholder="Search by a name...">
     </div>
