@@ -1,9 +1,10 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-4">
+            <h1>Reports</h1>
             <div class="list-group" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action active" id="list-outcome-list" data-toggle="list" href="#list-outcome" role="tab" aria-controls="outcome">Outcome</a>
-                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
+                <a class="list-group-item list-group-item-action" id="list-monthlyIncome-list" data-toggle="list" href="#list-monthlyIncome" role="tab" aria-controls="profile">Monthly Income</a>
                 <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
                 <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
             </div>
@@ -41,19 +42,15 @@
                         </button>
                     </form>
                 </div>
-                <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                <div class="tab-pane fade" id="list-monthlyIncome" role="tabpanel" aria-labelledby="list-monthlyIncome-list">
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown button
+                        <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Select Data
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <?php
-                            $year = '2020';
-                            $month = 'June';
-                            ?>
-                            <a class="dropdown-item" href="<?= base_url(); ?>reports/outcome/<?= $year ?>/<?= $month ?>">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <?php foreach ($year_tr as $y) : ?>
+                                <a class="dropdown-item" href="<?= base_url() ?>reports/monthly_income/<?= $y['year'] ?>/<?= $y['month'] ?>"><?= $y['year'] ?> <?= $y['month'] ?></a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -69,10 +66,10 @@
 <script>
     $(document).ready(function() {
 
-        $('#report_form').on('submit', function(event) {
+        $('#service_monthly_report_form').on('submit', function(event) {
             event.preventDefault();
             $.ajax({
-                url: "<?= base_url('reports/outcome'); ?>",
+                url: "<?= base_url('reports/monthly_services'); ?>",
                 method: "POST",
                 data: $(this).serialize(),
                 dataType: "json"
