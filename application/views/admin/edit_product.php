@@ -46,6 +46,7 @@
                 Confirm Edit
             </button>
         </form>
+        <a href="<?= base_url(); ?>products/delete_products/<?= $product['product_id']; ?>" class="btn btn-danger btn-user btn-block">Delete</a>
     </div>
 </div>
 <script>
