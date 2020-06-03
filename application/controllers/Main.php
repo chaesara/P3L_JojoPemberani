@@ -23,4 +23,13 @@ class Main extends CI_Controller
         $this->load->view('main/products', $data);
         $this->load->view('templates/footer');
     }
+
+    public function menu_about()
+    {
+        $data['title'] = 'Kouvee :: About Us';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('main/about', $data);
+        $this->load->view('templates/footer');
+    }
 }

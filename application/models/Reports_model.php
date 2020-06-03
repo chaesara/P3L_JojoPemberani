@@ -3,29 +3,38 @@
 
 class Reports_model extends CI_Model
 {
-    public function getSupplyYear()
+    public function getSupplies()
     {
-        $this->db->select('YEAR(supply_date)');
-        $this->db->from('supplies');
-        $this->db->where('DELETED_AT', null);
-
-        return $this->db->get()->result_array();
+        return $this->db->get_where('supplies', ['deleted_at' => null])->result_array();
     }
 
     public function getSupplyMonth()
     {
-        $this->db->select('MONTHNAME(supply_date)');
+        $this->db->select('MONTHNAME(supply_date) AS month');
         $this->db->from('supplies');
         $this->db->where('DELETED_AT', null);
+        $this->db->group_by('month');
 
         return $this->db->get()->result_array();
     }
 
-    public function outcomeReport($year, $month)
+    public function getSupplyYear()
+    {
+        $this->db->select('YEAR(supply_date) AS year');
+        $this->db->from('supplies');
+        $this->db->where('DELETED_AT', null);
+        $this->db->group_by('year');
+
+        return $this->db->get()->result_array();
+    }
+
+    public function outcomeReport()
     {
         $status = 'Completed';
+        $year = '2020';
+        $month = 'June';
 
-        $this->db->select('YEAR(po.supply_date) AS TAHUN, MONTHNAME(po.supply_date), p.product_name AS nama_produk, SUM(dpo.supply_detail_subtotal) AS jumlah_pengeluaran');
+        $this->db->select('YEAR(po.supply_date) AS TAHUN, MONTHNAME(po.supply_date) AS BULAN, p.product_name AS nama_produk, SUM(dpo.supply_detail_subtotal) AS jumlah_pengeluaran');
         $this->db->from('supply_details dpo');
         $this->db->join('supplies po', 'supply_id');
         $this->db->join('products p', 'product_id');
@@ -35,6 +44,6 @@ class Reports_model extends CI_Model
         $this->db->group_by('dpo.product_id');
         $this->db->order_by('jumlah_pengeluaran', 'DESC');
 
-        $pengadaanBulanan = $this->db->get()->result_array();
+        return $this->db->get()->result();
     }
 }

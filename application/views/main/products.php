@@ -4,7 +4,7 @@
             <div class="text-black">
                 <h2>Our <b>Products</b></h2>
                 <p>We offered pet products and we paid cash up front.
-Buyers entering the site of one of our USA dealers, are directed to purchase these products through them. No other online outlets would sell in this manner.</p>
+                    Buyers entering the site of one of our USA dealers, are directed to purchase these products through them. No other online outlets would sell in this manner.</p>
 
             </div>
         </div>
@@ -36,91 +36,6 @@ Buyers entering the site of one of our USA dealers, are directed to purchase the
                 </div>
             </div>
         <?php endforeach; ?>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.hulu.com">
-                <img src="https://apprecs.com/ios-meta/app-icons/256/376510438.jpg" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.netflix.com/fr/">
-                <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/256/Netflix.png" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.hulu.com">
-                <img src="https://apprecs.com/ios-meta/app-icons/256/376510438.jpg" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.netflix.com/fr/">
-                <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/256/Netflix.png" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.hulu.com">
-                <img src="https://apprecs.com/ios-meta/app-icons/256/376510438.jpg" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.netflix.com/fr/">
-                <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/256/Netflix.png" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.hulu.com">
-                <img src="https://apprecs.com/ios-meta/app-icons/256/376510438.jpg" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.netflix.com/fr/">
-                <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/256/Netflix.png" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.hulu.com">
-                <img src="https://apprecs.com/ios-meta/app-icons/256/376510438.jpg" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.netflix.com/fr/">
-                <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/256/Netflix.png" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.hulu.com">
-                <img src="https://apprecs.com/ios-meta/app-icons/256/376510438.jpg" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.netflix.com/fr/">
-                <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/256/Netflix.png" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.hulu.com">
-                <img src="https://apprecs.com/ios-meta/app-icons/256/376510438.jpg" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.netflix.com/fr/">
-                <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/256/Netflix.png" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.hulu.com">
-                <img src="https://apprecs.com/ios-meta/app-icons/256/376510438.jpg" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.netflix.com/fr/">
-                <img src="https://cdn1.iconfinder.com/data/icons/metro-ui-dock-icon-set--icons-by-dakirby/256/Netflix.png" alt="" class="card-img">
-            </a>
-        </div>
-        <div class="card card-custom mx-2 mb-3">
-            <a href="https://www.hulu.com">
-                <img src="https://apprecs.com/ios-meta/app-icons/256/376510438.jpg" alt="" class="card-img">
-            </a>
-        </div>
     </div>
 
 
