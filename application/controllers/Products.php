@@ -100,7 +100,7 @@ class Products extends CI_Controller
         $config['max_size']             = 3000;
         $config['file_name']            = $imgName;
         $config['overwrite']            = true;
-        $config['encrypt_name']         = true;
+        //$config['encrypt_name']         = true;
         //$config['max_width']            = 1024;
         //$config['max_height']           = 768;
 
